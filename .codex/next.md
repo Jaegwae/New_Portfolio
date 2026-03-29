@@ -1,15 +1,15 @@
 # Next
 
 ## Resume point
-Resume after adding a root README:
-- `README.md` now documents the portfolio overview, stack, scripts, and Firebase deployment flow
-- the working folder still has no `.git`, so GitHub sync must go through the temporary clone
-- the live Firebase site is already up to date before this GitHub push task
+Resume after preparing the final local push from this working folder:
+- this folder is now a working Git checkout on `main`
+- the remaining local changes are the `.codex` docs, `docs/worklog.md`, and `public/assets/hero/ascii-figure.png`
+- local preview/cache folders are still excluded from the intended commit
 
 ## Next actions
-1. sync the latest local project state into the temporary Git clone
-2. commit and push the README plus the current project changes to GitHub
-3. keep excluding local preview artifacts from the GitHub push
+1. stage the remaining local files from this folder
+2. commit and push them to `origin/main`
+3. confirm this folder is clean or only contains intentionally untracked local artifacts afterward
 
 ## Before editing again
 - reread `AGENTS.md`
@@ -19,4 +19,4 @@ Resume after adding a root README:
 - check latest `docs/worklog.md`
 
 ## Last known concerns
-- [ ] the temporary clone currently contains untracked local preview artifacts that should stay out of the GitHub commit
+- [ ] `public/assets/hero/ascii-figure.png` is a large tracked asset, so the final commit should stay limited to that file plus the remaining docs

@@ -1,7 +1,7 @@
 # Spec
 
 ## Current task
-Write a root README and push the latest project state to GitHub.
+Commit the remaining local changes from this reconnected working folder and push them to GitHub.
 
 ## Task type
 Choose one:
@@ -21,32 +21,32 @@ Current:
 - performance cleanup
 
 ## Background
-- The latest portfolio state has already been deployed to Firebase Hosting.
-- The user wants the repository itself updated on GitHub as well.
-- Before pushing, the repo should have a usable root `README.md`.
+- This working folder has already been reconnected to the GitHub repository.
+- A few local changes still remain here: updated task-tracking docs and the user-added `public/assets/hero/ascii-figure.png`.
+- The user wants those remaining local changes pushed from this folder directly.
 
 ## In scope
-- [x] add a root `README.md` that explains the project clearly
-- [x] keep the README aligned with the current stack and deployment flow
-- [x] push the latest repository state to the existing GitHub remote
+- [x] review the remaining local changes in this folder
+- [x] commit the remaining meaningful files from this folder
+- [x] push the new commit to the GitHub remote
 
 ## Out of scope
 - [x] making additional UI or motion changes
-- [x] changing the Firebase Hosting target
-- [x] restructuring the project beyond documentation and repo sync
+- [x] changing deployment config
+- [x] cleaning every untracked local asset outside the current push scope
 
 ## Constraints
-- keep the README concise, accurate, and useful for collaborators
-- push only meaningful project files, not local preview artifacts
-- preserve the current live deployment setup
+- push from this folder now that Git is reconnected here
+- include the meaningful remaining asset the user left in `public/assets/hero/`
+- keep local cache folders and preview artifacts out of the commit
 
 ## Acceptance criteria
-- [x] the repo has a root `README.md`
-- [x] the README reflects the current project and deployment commands
-- [ ] the latest local project state is pushed to the GitHub remote
+- [x] the remaining local docs and hero asset are committed from this folder
+- [ ] the new commit is pushed to `origin/main`
+- [x] local preview/cache artifacts remain uncommitted
 
 ## Likely files involved
-- docs: `README.md`
+- asset: `public/assets/hero/ascii-figure.png`
 - docs: `.codex/spec.md`
 - docs: `.codex/plans.md`
 - docs: `.codex/next.md`
@@ -54,4 +54,4 @@ Current:
 
 ## Risks / watchouts
 - repo concern:
-  this working folder is not a Git checkout, so GitHub sync should be done through the temporary clone without including local preview artifacts
+  only the intended remaining local files should be committed, not local cache folders or preview artifacts

@@ -1,7 +1,7 @@
 # Plan
 
 ## Goal
-Add a clear root README and push the latest project state to GitHub.
+Commit and push the remaining local changes from this now-reconnected working folder.
 
 ## Current status
 - not started
@@ -13,31 +13,32 @@ Add a clear root README and push the latest project state to GitHub.
 Current: done
 
 ## Checklist
-- [x] inspect current repo and remote sync situation
-- [x] write a root `README.md`
-- [ ] verify the current project state before push
-- [ ] push the latest repo state to GitHub
+- [x] inspect the remaining local changes
+- [x] keep only meaningful files in scope
+- [ ] create a commit from this folder
+- [ ] push to GitHub from this folder
 - [ ] update `next.md`
 - [ ] append `worklog`
 
 ## Checkpoints
 
-### 1. README
-- write a concise root README for the current portfolio project
-- include local development and deployment commands
+### 1. Remaining changes
+- commit the remaining local docs and user-provided hero asset
+- keep cache folders and preview artifacts out of scope
 
 Done when:
-- the repo has an accurate and usable README
+- the intended remaining files are staged cleanly
 
-### 2. GitHub sync safety
-- sync through the temporary Git clone because the working folder has no `.git`
-- avoid pushing `.tmp-previews` and other local-only artifacts
+### 2. Push safety
+- push from this folder now that Git works locally here
+- verify the new commit lands on `origin/main`
 
 Done when:
-- the latest meaningful project state is pushed cleanly to GitHub
+- the remaining local changes are on GitHub
 
 ### 3. Validation
-- record the README + GitHub sync in repo docs
+- verify post-push Git state
+- record the final push in repo docs
 
 Done when:
-- the GitHub sync pass is recorded
+- the final GitHub sync pass is validated and recorded

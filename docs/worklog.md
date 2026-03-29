@@ -21,6 +21,57 @@ Concise history of meaningful portfolio changes.
 
 ## Entries
 
+### [2026-03-29] Remaining local folder changes prepared for direct Git push
+- Type:
+  contact/footer update / performance cleanup
+- Page:
+  repo-wide
+- Section:
+  repository / local Git workflow
+- Summary:
+  After reconnecting this working folder to Git, prepared the remaining local docs and the user-provided `public/assets/hero/ascii-figure.png` asset for a direct push from this folder instead of relying on the temporary clone.
+- Files changed:
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+  - `public/assets/hero/ascii-figure.png`
+- Reduced motion impact:
+  unchanged; this pass only affects repository state and tracked assets
+- Mobile impact:
+  unchanged; this pass only affects repository state and tracked assets
+- Tests / checks:
+  `git status --short`
+  `Get-ChildItem public/assets/hero`
+- Remaining concerns:
+  the final commit should stay scoped to the remaining intended files and leave preview/cache artifacts out
+
+### [2026-03-29] Current working folder reconnected to GitHub repo
+- Type:
+  contact/footer update / performance cleanup
+- Page:
+  repo-wide
+- Section:
+  repository / local Git workflow
+- Summary:
+  Reconnected this working folder itself to the existing `Jaegwae/New_Portfolio` Git history so local Git commands now work here directly, while keeping the current files intact and hiding obvious local cache folders from everyday status output.
+- Files changed:
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only affects local repository metadata and workflow
+- Mobile impact:
+  unchanged; this pass only affects local repository metadata and workflow
+- Tests / checks:
+  `git rev-parse --show-toplevel`
+  `git branch --show-current`
+  `git remote -v`
+  `git status --short`
+- Remaining concerns:
+  this folder still has a few local differences that can now be reviewed and pushed directly if needed
+
 ### [2026-03-29] Root README added before GitHub sync
 - Type:
   contact/footer update / performance cleanup
@@ -41,9 +92,13 @@ Concise history of meaningful portfolio changes.
 - Mobile impact:
   unchanged; this pass only adds repository documentation
 - Tests / checks:
-  pending GitHub sync step
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `git push origin main`
 - Remaining concerns:
-  the latest repo state still needs to be pushed through the temporary Git clone without including local preview artifacts
+  the working folder still is not a Git checkout, so future GitHub syncs still depend on the temporary clone unless the repo is reconnected locally
 
 ### [2026-03-29] Latest self-introduction title rendering change redeployed
 - Type:
