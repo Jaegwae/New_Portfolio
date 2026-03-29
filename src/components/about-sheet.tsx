@@ -3,46 +3,29 @@
 import { useRef } from "react";
 
 import { ABOUT_SHEET_CONTENT } from "@/content/about-sheet";
-import {
-  applyRevealStyles,
-  DEFAULT_SECTION_TITLE_REVEAL,
-  resetRevealStyles,
-  useScrollScene,
-} from "@/lib/scroll-motion";
+import { useGsapScrollReveal } from "@/lib/gsap-reveal";
 
 export function AboutSheet() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const paragraphRefs = useRef<Array<HTMLParagraphElement | null>>([]);
+  const titleWords = ABOUT_SHEET_CONTENT.title.split(/\s+/).filter(Boolean);
 
-  useScrollScene(({ prefersReducedMotion }) => {
-    const viewportHeight = window.innerHeight;
-
-    if (titleRef.current) {
-      if (prefersReducedMotion) {
-        resetRevealStyles(titleRef.current);
-      } else {
-        applyRevealStyles(titleRef.current, viewportHeight, DEFAULT_SECTION_TITLE_REVEAL);
-      }
-    }
-
-    paragraphRefs.current.forEach((paragraph, index) => {
-      if (!paragraph) {
-        return;
-      }
-
-      if (prefersReducedMotion) {
-        resetRevealStyles(paragraph);
-        return;
-      }
-
-      applyRevealStyles(paragraph, viewportHeight, {
-        enterOffset: 32 + Math.min(index, 2) * 4,
-        exitOffset: 26,
-        fadeInStart: 0.03,
-        fadeInEnd: 0.14,
-      });
-    });
-  });
+  useGsapScrollReveal(() => [
+    {
+      element: titleRef.current,
+      fromY: 58,
+      toY: -42,
+      start: "top 96%",
+      end: "bottom 78%",
+    },
+    ...paragraphRefs.current.map((paragraph, index) => ({
+      element: paragraph,
+      fromY: 32 + Math.min(index, 2) * 4,
+      toY: -26,
+      start: "top 97%",
+      end: "bottom 86%",
+    })),
+  ]);
 
   return (
     <section aria-labelledby="about-sheet-title" className="about-sheet">
@@ -51,7 +34,11 @@ export function AboutSheet() {
           <div className="about-sheet__hero">
             <p className="about-sheet__eyebrow">{ABOUT_SHEET_CONTENT.eyebrow}</p>
             <h2 className="about-sheet__title" id="about-sheet-title" ref={titleRef}>
-              {ABOUT_SHEET_CONTENT.title}
+              {titleWords.map((word) => (
+                <span className="about-sheet__title-word" key={word}>
+                  {word}
+                </span>
+              ))}
             </h2>
           </div>
 

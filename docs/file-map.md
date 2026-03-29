@@ -12,17 +12,23 @@ This document helps humans and agents locate code ownership quickly.
 ### Shared UI
 - `src/components/`
   - current home-page section ownership lives here
-  - `hero-scene.tsx` composes the route-level home experience
+  - `hero-scene.tsx` composes the route-level home experience and now owns the GSAP-driven hero scene state sync
+  - `hero-fluid-background.tsx` owns the decorative HOME WebGL flowmap + fragment-shader background behind the hero copy
   - `manifesto-section.tsx`, `about-sheet.tsx`, `portfolio-section.tsx`, `about-finale.tsx` own the home sections
   - `portfolio-modal.tsx`, `rotating-role.tsx`, `wave-field.tsx`, `smooth-scroll-provider.tsx` support the home route
 
 ### Motion
-- `src/lib/scroll-motion.ts`
-  - shared scroll-scene runtime and reveal helpers
+- `src/lib/gsap-reveal.ts`
+  - GSAP ScrollTrigger-based reveal helpers for editorial section copy
 - `src/components/smooth-scroll-provider.tsx`
   - Lenis ownership and reduced-motion-aware smooth-scroll setup
 - `src/animations/`
   - reserved for future extracted motion modules; currently not used by the live route
+
+### Tooling
+- `scripts/`
+  - validation and maintenance helpers
+  - `ensure-next-cache-life.mjs` backfills Next's generated `cache-life.d.ts` before standalone typecheck runs
 
 ### Content
 - `src/content/`

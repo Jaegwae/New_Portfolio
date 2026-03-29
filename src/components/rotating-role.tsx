@@ -3,11 +3,11 @@
 import { useEffect, useMemo, useState } from "react";
 
 const roles = [
-  "PROBLEM SOLVER",
-  "PRODUCT PLANNER",
+  "PROBLEM SOLVER.",
+  "PRODUCT PLANNER.",
   ". . . ?",
-  "PRODUCT DEVELOPER",
-  "SYSTEM THINKER",
+  "PRODUCT DEVELOPER.",
+  "SYSTEM THINKER.",
 ] as const;
 
 const TYPE_SPEED = 82;

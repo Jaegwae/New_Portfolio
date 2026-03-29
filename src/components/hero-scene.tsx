@@ -1,9 +1,13 @@
 "use client";
 
 import type Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   useCallback,
   useEffect,
+  useEffectEvent,
   useRef,
   useState,
   type CSSProperties,
@@ -13,14 +17,12 @@ import {
   type SetStateAction,
 } from "react";
 
-import { AboutFinale } from "@/components/about-finale";
 import { AboutSheet } from "@/components/about-sheet";
+import { HeroFluidBackground } from "@/components/hero-fluid-background";
 import { ManifestoSection } from "@/components/manifesto-section";
 import { PortfolioSection } from "@/components/portfolio-section";
 import { RotatingRoleInner } from "@/components/rotating-role";
 import { useLenis } from "@/components/smooth-scroll-provider";
-import { WaveField } from "@/components/wave-field";
-import { clamp, useScrollScene } from "@/lib/scroll-motion";
 
 type HeroSection = "home" | "manifesto" | "intro" | "portfolio" | "about";
 type SnapSectionKey = "manifesto" | "sheet" | "portfolio" | "about";
@@ -52,6 +54,21 @@ function useSyncedStateRef<T>(initialValue: T) {
   return [value, valueRef, setSyncedValue] as const;
 }
 
+let hasRegisteredHeroSceneGsap = false;
+
+function ensureHeroSceneGsapRegistered() {
+  if (hasRegisteredHeroSceneGsap) {
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+  hasRegisteredHeroSceneGsap = true;
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
 const MANIFESTO_LOCK_DISTANCE_RATIO = 5;
 const MANIFESTO_RELEASE_SCROLL_RATIO = 0.06;
 const MANIFESTO_SECTION_ACTIVE_RATIO = 0.62;
@@ -70,11 +87,31 @@ const SECTION_NAV_ITEMS: ReadonlyArray<{
   label: string;
 }> = [
   { section: "home", label: "HOME" },
-  { section: "manifesto", label: "소개" },
+  { section: "manifesto", label: "슬로건" },
   { section: "intro", label: "자기소개" },
   { section: "portfolio", label: "포트폴리오" },
-  { section: "about", label: "ABOUT" },
 ];
+
+const HERO_PROFILE_ITEMS: ReadonlyArray<{
+  label: string;
+  value: string;
+  href?: string;
+}> = [
+  {
+    label: "생년월일",
+    value: "2000.03.30 (만 25세)",
+  },
+  {
+    label: "이메일",
+    value: "kimjk4031@naver.com",
+    href: "mailto:kimjk4031@naver.com",
+  },
+  {
+    label: "연락처",
+    value: "010-9127-4031",
+    href: "tel:01091274031",
+  },
+] as const;
 
 function getIntroCoverProgress(manifestoRevealComplete: boolean, viewportHeight: number, introTop: number) {
   const introOverlapOffset = manifestoRevealComplete ? clamp(viewportHeight - introTop, 0, viewportHeight * 1.1) : 0;
@@ -683,7 +720,7 @@ export function HeroScene() {
     setManifestoWordProgress,
   });
 
-  useScrollScene(({ prefersReducedMotion }) => {
+  const syncSceneFromScroll = useEffectEvent((prefersReducedMotion: boolean) => {
     const manifestoAnchor = manifestoAnchorRef.current;
     const sheetAnchor = sheetAnchorRef.current;
     const portfolioAnchor = portfolioAnchorRef.current;
@@ -755,6 +792,38 @@ export function HeroScene() {
     });
   });
 
+  useEffect(() => {
+    ensureHeroSceneGsapRegistered();
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleSceneUpdate = () => {
+      syncSceneFromScroll(mediaQuery.matches);
+    };
+    const handleReducedMotionChange = () => {
+      ScrollTrigger.refresh();
+      handleSceneUpdate();
+    };
+    const sceneTrigger = ScrollTrigger.create({
+      start: 0,
+      end: "max",
+      invalidateOnRefresh: true,
+      onUpdate: handleSceneUpdate,
+      onRefresh: handleSceneUpdate,
+    });
+    const removeLenisScrollListener = lenis?.on("scroll", ScrollTrigger.update);
+
+    mediaQuery.addEventListener("change", handleReducedMotionChange);
+    handleSceneUpdate();
+
+    return () => {
+      removeLenisScrollListener?.();
+      mediaQuery.removeEventListener("change", handleReducedMotionChange);
+      sceneTrigger.kill();
+    };
+    // Keep the effect-event dependency shape stable during Fast Refresh in dev.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lenis, syncSceneFromScroll]);
+
   const scrollToSection = useCallback((section: HeroSection) => {
     prepareManifestoForSectionJump(section);
 
@@ -790,12 +859,16 @@ export function HeroScene() {
       return;
     }
 
-    if (section === "home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-
-    (target as HTMLDivElement | null)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    gsap.to(window, {
+      duration: prefersReducedMotionRef.current ? 0 : 1,
+      ease: prefersReducedMotionRef.current ? "none" : "power4.out",
+      overwrite: "auto",
+      scrollTo: target ?? 0,
+      onComplete: () => {
+        isAutoSnappingRef.current = false;
+        clearSnapReleaseTimeout(snapReleaseTimeoutRef);
+      },
+    });
   }, [lenis, prepareManifestoForSectionJump]);
 
   return (
@@ -828,6 +901,7 @@ export function HeroScene() {
       <section
         className={`hero-stage${isHeroRetired ? " is-retired" : ""}${isHeroAmbientSettled ? " is-ambient-settled" : ""}${isHomeAmbientPaused ? " is-ambient-paused" : ""}`}
       >
+        <HeroFluidBackground paused={isHomeAmbientPaused} />
         <div className="hero-copy">
           <h1 className="hero-heading">
             <span className="hero-heading__muted">안녕하세요, 저는 </span>
@@ -839,14 +913,24 @@ export function HeroScene() {
             <RotatingRoleInner paused={isHomeAmbientPaused} />
           </p>
 
-          <p className="hero-description">
-            복잡한 문제를 구조화하고,<br/>
-            사용자에게 자연스럽게 읽히는 디지털 경험을 설계합니다.
-          </p>
+          <dl className="hero-profile">
+            {HERO_PROFILE_ITEMS.map((item) => (
+              <div className="hero-profile__item" key={item.label}>
+                <dt className="hero-profile__label">{item.label}</dt>
+                <dd className="hero-profile__value">
+                  {item.href ? (
+                    <a className="hero-profile__link" href={item.href}>
+                      {item.value}
+                    </a>
+                  ) : (
+                    item.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
         </div>
-
-        <WaveField />
-
         <div aria-hidden="true" className="hero-scroll">
           <span className="hero-scroll__mouse" />
         </div>
@@ -864,9 +948,6 @@ export function HeroScene() {
         <PortfolioSection />
       </div>
 
-      <div className="about-finale-anchor" ref={aboutFinaleAnchorRef}>
-        <AboutFinale />
-      </div>
     </main>
   );
 }

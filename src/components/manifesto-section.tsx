@@ -5,7 +5,7 @@ import { useMemo } from "react";
 const MANIFESTO_LINES = [
   ["복잡한", "문제를", "구조화합니다."],
   ["자연스러운", "디지털 경험을", "설계합니다."],
-  ["그렇게", "문제를", "해결합니다."],
+  ["의미있는", "사용자 경험을", "전달합니다."],
 ] as const;
 
 type ManifestoSectionProps = {

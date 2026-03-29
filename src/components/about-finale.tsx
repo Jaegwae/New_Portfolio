@@ -3,28 +3,20 @@
 import { useRef } from "react";
 
 import { ABOUT_FINALE_CONTENT } from "@/content/about-finale";
-import {
-  applyRevealStyles,
-  DEFAULT_SECTION_TITLE_REVEAL,
-  resetRevealStyles,
-  useScrollScene,
-} from "@/lib/scroll-motion";
+import { useGsapScrollReveal } from "@/lib/gsap-reveal";
 
 export function AboutFinale() {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
-  useScrollScene(({ prefersReducedMotion }) => {
-    if (!titleRef.current) {
-      return;
-    }
-
-    if (prefersReducedMotion) {
-      resetRevealStyles(titleRef.current);
-      return;
-    }
-
-    applyRevealStyles(titleRef.current, window.innerHeight, DEFAULT_SECTION_TITLE_REVEAL);
-  });
+  useGsapScrollReveal(() => [
+    {
+      element: titleRef.current,
+      fromY: 58,
+      toY: -42,
+      start: "top 96%",
+      end: "bottom 78%",
+    },
+  ]);
 
   return (
     <section aria-labelledby="about-finale-title" className="about-finale">

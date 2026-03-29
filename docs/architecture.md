@@ -18,7 +18,7 @@ This document defines the high-level page architecture for a personal portfolio 
 - in the current repo, `src/components/` owns the section markup and section behavior
 - content should live in `src/content/` when it needs to be reused or audited
 - shared UI should live in `src/components/`
-- reusable motion logic currently lives in `src/lib/scroll-motion.ts` and `src/components/smooth-scroll-provider.tsx`
+- reusable motion logic currently lives in `src/components/hero-scene.tsx`, `src/lib/gsap-reveal.ts`, and `src/components/smooth-scroll-provider.tsx`
 - `src/animations/` remains available for future extracted motion modules if the site grows beyond the current home-route setup
 
 ## Architectural priorities

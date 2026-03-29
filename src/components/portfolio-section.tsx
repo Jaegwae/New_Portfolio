@@ -10,12 +10,7 @@ import {
   PORTFOLIO_PROJECTS,
   type PortfolioProject,
 } from "@/content/portfolio-projects";
-import {
-  applyRevealStyles,
-  DEFAULT_SECTION_TITLE_REVEAL,
-  resetRevealStyles,
-  useScrollScene,
-} from "@/lib/scroll-motion";
+import { useGsapScrollReveal } from "@/lib/gsap-reveal";
 
 function MarqueeRow({
   direction,
@@ -88,18 +83,15 @@ export function PortfolioSection() {
   const [selectedFilter, setSelectedFilter] = useState<(typeof PORTFOLIO_FILTERS)[number]>("All");
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
 
-  useScrollScene(({ prefersReducedMotion }) => {
-    if (!titleRef.current) {
-      return;
-    }
-
-    if (prefersReducedMotion) {
-      resetRevealStyles(titleRef.current);
-      return;
-    }
-
-    applyRevealStyles(titleRef.current, window.innerHeight, DEFAULT_SECTION_TITLE_REVEAL);
-  });
+  useGsapScrollReveal(() => [
+    {
+      element: titleRef.current,
+      fromY: 58,
+      toY: -42,
+      start: "top 96%",
+      end: "bottom 78%",
+    },
+  ]);
 
   const visibleProjects = useMemo(() => {
     if (selectedFilter === "All") {

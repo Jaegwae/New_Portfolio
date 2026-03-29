@@ -21,6 +21,562 @@ Concise history of meaningful portfolio changes.
 
 ## Entries
 
+### [2026-03-29] HOME ABOUT section temporarily disabled
+- Type:
+  home identity refinement
+- Page:
+  home
+- Section:
+  final ABOUT section / section nav
+- Summary:
+  Temporarily removed the ABOUT item from the home section nav and stopped rendering the final ABOUT section on the home page so the visible home flow ends at portfolio for now.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only removes a rendered section and nav item
+- Mobile impact:
+  unchanged aside from the ABOUT nav item and finale section no longer appearing on home
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the dormant ABOUT-related home state can be cleaned up later if the section stays disabled for a longer stretch
+
+### [2026-03-29] Self-introduction body column widened on large screens
+- Type:
+  about page refinement / responsive layout fix
+- Page:
+  home
+- Section:
+  self-introduction body
+- Summary:
+  Widened the self-introduction body column on large screens so the content uses more of the available right-side space while keeping the existing title column and reveal behavior intact.
+- Files changed:
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only adjusts static layout widths
+- Mobile impact:
+  unchanged; the width increase is limited to the large-screen layout rules
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  a quick live pass may still want a small width rebalance if the body feels either slightly too narrow or too stretched on very large desktops
+
+### [2026-03-29] Self-introduction body font increased slightly
+- Type:
+  about page refinement
+- Page:
+  home
+- Section:
+  self-introduction body
+- Summary:
+  Increased the self-introduction paragraph font size slightly across desktop and smaller breakpoints to improve readability without changing the section layout or reveal behavior.
+- Files changed:
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only adjusts static typography values
+- Mobile impact:
+  mobile body text also received a small increase so the section stays readable on narrower screens
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  a quick live pass may still want a tiny additional font-size or line-height tweak depending on how the longer paragraphs feel in the browser
+
+### [2026-03-29] HOME hero profile lines added under the typed line
+- Type:
+  home identity refinement
+- Page:
+  home
+- Section:
+  hero identity block
+- Summary:
+  Added a small three-line profile block under the HOME "I'm a" line with birth date, email, and phone. The new block stays visually secondary to the headline and rotating role line, and the email and phone values are directly usable as links.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; the update only adds static supporting content below the existing hero motion
+- Mobile impact:
+  the same block stays in the hero on smaller screens with reduced label width and type size so it remains readable
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  a quick live pass may still want a small spacing tweak if the metadata block feels too close to or too far from the rotating role line
+
+### [2026-03-29] Self-introduction section pushed lower again
+- Type:
+  about page refinement / responsive layout fix
+- Page:
+  home
+- Section:
+  self-introduction spacing
+- Summary:
+  Increased the self-introduction section's top padding one more step after live review so the title and body sit farther down as a unit. The composition keeps the same structure and reveal behavior, but now starts with noticeably more breathing room above it.
+- Files changed:
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; the same section reveal path remains in place and fully readable without motion
+- Mobile impact:
+  tablet and mobile also receive a smaller follow-up increase so the spacing rhythm stays consistent across breakpoints
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  a quick live pass may still be useful to confirm the section now feels comfortably placed without becoming too airy
+
+### [2026-03-29] Self-introduction section top spacing increased
+- Type:
+  about page refinement / responsive layout fix
+- Page:
+  home
+- Section:
+  self-introduction spacing
+- Summary:
+  Increased the self-introduction section's top padding so the title and body sit farther from the top edge and feel less cramped. The change keeps the existing title formatting, paragraph layout, and reveal behavior intact while moving the composition down as a unit.
+- Files changed:
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; the section still reveals the same way and remains fully readable without motion
+- Mobile impact:
+  the same spacing increase was applied conservatively on tablet and mobile so the section keeps a similar rhythm there too
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  a quick live pass may still want a tiny top-padding rebalance if the desktop composition feels either slightly too tight or slightly too airy
+
+### [2026-03-29] Self-introduction title forced to word-level lines
+- Type:
+  about page refinement / responsive layout fix
+- Page:
+  home
+- Section:
+  self-introduction title
+- Summary:
+  Replaced the accidental width-driven title wrap with explicit word-level lines in the self-introduction section. The title now breaks as separate words rather than splitting inside a word, while keeping the same editorial styling and reveal behavior.
+- Files changed:
+  - `src/components/about-sheet.tsx`
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; the title still uses the same reveal path and remains fully readable without motion
+- Mobile impact:
+  improved consistency because the title no longer relies on browser character wrapping at narrower widths
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  a quick live visual pass may still want a small width or font-size tweak if the two-line title block feels too narrow on large desktop screens
+
+### [2026-03-29] HOME WebGL fog darkened and pointer footprint tightened
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero background
+- Summary:
+  Tuned the WebGL HOME background after live review by darkening the fog layer slightly and shrinking the pointer-reactive footprint. The shader now sits a little deeper behind the copy, and the mouse-follow effect reads as a tighter, more controlled disturbance.
+- Files changed:
+  - `src/components/hero-fluid-background.tsx`
+  - `src/app/globals.css`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; reduced-motion still freezes the live background and shows the same darker tonal layer statically
+- Mobile impact:
+  the background remains secondary on mobile, with the smaller pointer influence helping keep the effect calmer on narrower screens too
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  one more live visual pass may still be useful if the user wants the fog even darker or the pointer footprint even tighter
+
+### [2026-03-29] HOME WebGL background wrapper-fill bug fixed
+- Type:
+  home identity refinement / motion polish / responsive layout fix
+- Page:
+  home
+- Section:
+  hero background
+- Summary:
+  Fixed a follow-up sizing bug where the WebGL background was still rendering to viewport dimensions even though the hero background wrapper extends beyond the viewport with negative insets. The canvas now measures the actual wrapper and re-syncs through `ResizeObserver`, so the right and bottom edges stay filled.
+- Files changed:
+  - `src/components/hero-fluid-background.tsx`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; reduced-motion still freezes the live background while keeping the same tonal layer visible
+- Mobile impact:
+  improved consistency on narrower screens too because the background now fills the actual masked wrapper area instead of relying on viewport size
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the fill bug is fixed, but the shader contrast and right-side emphasis may still want one more visual tuning pass on a large desktop display
+
+### [2026-03-29] HOME background upgraded to WebGL flowmap + shader
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero background
+- Summary:
+  Replaced the earlier lower-fidelity fluid canvas background with a stronger WebGL implementation. The HOME hero now uses a fragment shader fed by a flowmap-style pointer field so the background feels more alive and reference-adjacent while still staying secondary to the headline.
+- Files changed:
+  - `src/components/hero-fluid-background.tsx`
+  - `src/app/globals.css`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion keeps the same tonal layer but stops the live flow update so the HOME stage remains readable without active animation
+- Mobile impact:
+  the same background stays on mobile with lower opacity and a tighter mask so the stronger shader treatment does not overpower the identity copy
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the shader is now in the right technical family, but one more live art-direction pass may still be useful if the user wants the right-side emphasis or cursor energy pushed even closer to the reference
+
+### [2026-03-29] HOME background shifted to a fluid grayscale canvas reinterpretation
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero background
+- Summary:
+  Replaced the earlier editorial-grid treatment with a calmer fluid grayscale canvas layer inspired by the reference atmosphere. The HOME hero now uses a softly distorted monochrome texture with subtle pointer response and a shaped overlay so the stage feels richer without pulling focus from the identity copy.
+- Files changed:
+  - `src/components/hero-fluid-background.tsx`
+  - `src/components/hero-scene.tsx`
+  - `src/app/globals.css`
+  - `tests/integration/hero-scene.test.tsx`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion now keeps the HOME background readable by stopping the live canvas motion while leaving the same tonal layer in place
+- Mobile impact:
+  the same background remains on mobile with lower opacity and a narrower mask so the copy stays dominant on smaller screens
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the exact contrast and right-side emphasis may still want one live desktop tuning pass if the user wants the atmosphere either subtler or more dramatic
+
+### [2026-03-29] HOME background shifted to editorial grid with light sweeps
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero background
+- Summary:
+  Replaced the earlier soft spotlight-mesh direction with a more editorial background treatment. The HOME hero now uses a structured grid panel, axis lines, small node markers, and slow light sweeps so the stage feels more intentional while keeping the copy dominant.
+- Files changed:
+  - `src/components/hero-editorial-grid.tsx`
+  - `src/components/hero-scene.tsx`
+  - `src/app/globals.css`
+  - `tests/integration/hero-scene.test.tsx`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion keeps the editorial grid static by stopping the sweep animations and pointer smoothing while leaving the background readable
+- Mobile impact:
+  the same background system stays active on mobile with reduced density and lower contrast so it does not compete with the copy block
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the exact sweep brightness and grid density may still want one live tuning pass on a large desktop display if the user wants a stricter editorial feel
+
+### [2026-03-29] HOME spotlight mesh added behind the hero copy
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero background
+- Summary:
+  Added a new soft spotlight mesh behind the HOME hero copy. The layer combines low-contrast blurred lights, a faint editorial grid, and GSAP-smoothed pointer response so the hero feels less flat while staying calm and readable.
+- Files changed:
+  - `src/components/hero-spotlight-mesh.tsx`
+  - `src/components/hero-scene.tsx`
+  - `src/app/globals.css`
+  - `tests/integration/hero-scene.test.tsx`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion now keeps the background mesh static by disabling the live orb drift and pointer response while leaving the visual wash readable
+- Mobile impact:
+  the same background system stays active on mobile with lower opacity and tighter placement so it does not compete with the copy block
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the strength of the right-side glow may still want one live tuning pass on a large desktop display if the user wants it even subtler or richer
+
+### [2026-03-29] HOME ASCII figure removed from the hero and repo path
+- Type:
+  home identity refinement / cleanup
+- Page:
+  home
+- Section:
+  hero right-side accent
+- Summary:
+  Removed the temporary ASCII figure accent from the HOME hero, deleted its dedicated component and CSS, removed the no-longer-used `ascii-react` dependency, and restored the hero to a clean copy-first layout.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `src/app/globals.css`
+  - `src/components/hero-ascii-figure.tsx`
+  - `tests/integration/hero-scene.test.tsx`
+  - `package.json`
+  - `package-lock.json`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  none; removing the figure reduces motion rather than introducing a new reduced-motion branch
+- Mobile impact:
+  none; the figure was already hidden on smaller screens
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the right side of the hero is intentionally empty again, so a later accent should be reconsidered from scratch rather than restoring this experiment
+
+### [2026-03-29] HOME ASCII figure added with pointer-tracked head
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero right-side accent
+- Summary:
+  Added a new lower-right ASCII figure accent to the HOME hero using the provided `ascii-figure.png` asset and an `ascii-react` render layer. The figure stays decorative, hides on smaller screens, and uses a clipped head overlay that follows pointer movement while reduced motion leaves the composition static.
+- Files changed:
+  - `src/components/hero-ascii-figure.tsx`
+  - `src/components/hero-scene.tsx`
+  - `src/app/globals.css`
+  - `tests/integration/hero-scene.test.tsx`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion now keeps the ASCII figure visible but static, with pointer tracking disabled and the head reset to its neutral position
+- Mobile impact:
+  the figure is hidden below the existing `900px` breakpoint so the hero copy keeps full priority on narrower screens
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the exact head crop and travel range may still want one more live desktop tuning pass if the user wants a tighter likeness to the reference composition
+
+### [2026-03-29] HOME interactive dot character added
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero visual accent
+- Summary:
+  Added a new right-side dotted human character to the HOME hero, with pointer-reactive face and arm movement on large screens, while keeping mobile hidden and reduced motion on a static pose.
+- Files changed:
+  - `src/components/dot-character.tsx`
+  - `src/components/hero-scene.tsx`
+  - `src/app/globals.css`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion now shows the same character in a static pose with the floating motion disabled
+- Mobile impact:
+  the character is hidden on narrower screens so the hero copy keeps full priority there
+- Tests / checks:
+  `npm run lint`
+  `npm run build`
+  desktop screenshot check on `http://localhost:3000`
+  mobile reduced-motion screenshot check on `http://localhost:3000`
+- Remaining concerns:
+  `npm run typecheck` still hits the existing `.next/types/cache-life.d.ts` issue, and the character proportions may still want one more visual tuning pass after live review
+
+### [2026-03-29] HOME wave ornament removed
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero ambient ornament
+- Summary:
+  Removed the lower-right stripe wave ornament from the HOME hero by taking `WaveField` out of the live hero render path, while keeping the greeting, rotating role line, and scroll hint unchanged.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion behavior is unchanged because this only removes a decorative ambient layer
+- Mobile impact:
+  mobile loses the same stripe ornament and keeps the same hero structure otherwise
+- Tests / checks:
+  `npm run build`
+- Remaining concerns:
+  the calmer hero should still get a quick visual pass to confirm the balance feels right without the ornament
+
+### [2026-03-29] HOME intro section large-screen density adjusted
+- Type:
+  about page refinement / responsive layout fix
+- Page:
+  home
+- Section:
+  self-introduction sheet
+- Summary:
+  Adjusted the HOME intro section for large desktop widths by redistributing the title and body into a wider editorial composition, while keeping the existing copy, reading order, and laptop/mobile layout intact.
+- Files changed:
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion behavior is unchanged because the update only changes static layout on large screens
+- Mobile impact:
+  mobile stays on the existing stacked layout with no structural changes
+- Tests / checks:
+  `npm run build`
+- Remaining concerns:
+  the updated wide-screen composition should still be checked live on the 2560x1440 display to see whether it needs one more small tuning pass
+
+### [2026-03-29] HOME hero identity block nudged upward
+- Type:
+  home identity refinement / responsive layout fix
+- Page:
+  home
+- Section:
+  hero identity block
+- Summary:
+  Nudged the HOME greeting headline and rotating role line slightly upward by applying a modest shared offset to the hero copy container, without changing the hero structure or motion behavior.
+- Files changed:
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion behavior is unchanged because this is a static positioning adjustment
+- Mobile impact:
+  mobile keeps the same hero stack and now places the identity block a little higher as well
+- Tests / checks:
+  `npm run build`
+- Remaining concerns:
+  the offset is intentionally small, so a quick browser check should confirm whether it feels right or wants one more step
+
+### [2026-03-29] HOME hero supporting copy removed
+- Type:
+  home identity refinement
+- Page:
+  home
+- Section:
+  hero identity block
+- Summary:
+  Removed the two-line supporting description under the rotating role line in the HOME hero, leaving the headline and typed role line intact.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  reduced-motion behavior is unchanged because this is a content-only removal in the hero copy stack
+- Mobile impact:
+  mobile keeps the same hero structure with one less text block, so the intro stack reads more compactly
+- Tests / checks:
+  `npm run build`
+- Remaining concerns:
+  the tighter hero spacing should still get a quick live browser glance to confirm the balance feels intentional
+
 ### [2026-03-29] Manifesto progress state regression fix
 - Type:
   home identity refinement / motion polish
@@ -1685,3 +2241,207 @@ Concise history of meaningful portfolio changes.
   `npm run test:e2e`
 - Remaining concerns:
   the exact one-click HOME -> selected-work jump still needs live Chrome/Safari confirmation because current headless Chrome is not a reliable assertion surface for the full Lenis nav-click path
+
+### [2026-03-29] HOME dot character reworked into a larger lens-reactive silhouette
+- Type:
+  home identity refinement / motion polish / responsive layout fix
+- Page:
+  home
+- Section:
+  hero right-side character
+- Summary:
+  Reworked the earlier small dotted figure into a much larger bust-like silhouette that occupies the right side of the HOME hero. The new canvas rendering uses finer dots and a localized hover lens so nearby dots brighten, expand, and distort without moving the entire hero layout.
+- Files changed:
+  - `src/components/dot-character.tsx`
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  the character remains static whenever reduced motion is active or the HOME ambient scene is paused
+- Mobile impact:
+  none beyond preserving the existing mobile rule that hides the character under `900px` so the left copy keeps full width
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  a final live art-direction pass may still want a little more spacing between the silhouette and the right-side section nav, and `vitest` still logs jsdom canvas warnings even though the tests pass
+
+### [2026-03-29] HOME dot character refined toward the provided reference image
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero right-side character
+- Summary:
+  Shifted the character away from a broad lens-reactive look and toward a calmer micro-dot silhouette closer to the user-provided crop. The face region inside the head now tracks the mouse more clearly while the bust itself stays visually stable.
+- Files changed:
+  - `src/components/dot-character.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; the character remains static whenever reduced motion is active or the HOME ambient scene is paused
+- Mobile impact:
+  unchanged; the character remains hidden under the existing mobile breakpoint
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the current square-dot field is closer to the reference, but the exact glyph shape may still want one more aesthetic pass if the user wants a stricter one-to-one visual match
+
+### [2026-03-29] HOME dot character updated with visible tonal shading
+- Type:
+  home identity refinement / motion polish
+- Page:
+  home
+- Section:
+  hero right-side character
+- Summary:
+  Added visible tonal variation to the dot character so the head and torso no longer read as a flat field. The figure now combines a softer backlight, brighter facial plane, and subtler body shading while keeping the mouse-follow behavior inside the head.
+- Files changed:
+  - `src/components/dot-character.tsx`
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; the character remains static whenever reduced motion is active or the HOME ambient scene is paused
+- Mobile impact:
+  unchanged; the character remains hidden under the existing mobile breakpoint
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the tonal treatment is now closer to the provided crop, but the silhouette contour and exact dot glyph may still want one more art-direction pass for a stricter visual match
+
+### [2026-03-29] HOME dot character removed from the hero
+- Type:
+  home identity refinement
+- Page:
+  home
+- Section:
+  hero right-side character
+- Summary:
+  Removed the experimental dot character from the HOME hero at the user's request. The component remains in the codebase for now, but the live hero no longer renders it.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  none; removing the character reduces motion rather than adding any new behavior
+- Mobile impact:
+  none; the character was already hidden on mobile
+- Tests / checks:
+  `npm run lint`
+  `npm run build`
+- Remaining concerns:
+  the prototype character code and CSS still exist unused in the repo in case the user wants to revisit the concept later
+
+### [2026-03-29] HOME dot character prototype fully removed from the repo
+- Type:
+  home identity refinement / cleanup
+- Page:
+  home
+- Section:
+  hero right-side character
+- Summary:
+  Completed the cleanup after the earlier visual removal by deleting the unused `dot-character.tsx` file and removing the leftover `hero-character` CSS from the hero styles. The file map and task notes now reflect that the prototype is gone rather than merely hidden.
+- Files changed:
+  - `src/components/dot-character.tsx`
+  - `src/app/globals.css`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  none; this cleanup only removes unused hero-character code paths
+- Mobile impact:
+  none; the character was already absent from the mobile hero
+- Tests / checks:
+  `npm run lint`
+  `npm run build`
+- Remaining concerns:
+  the right side of HOME is intentionally empty for now, so any future accent should be reconsidered from scratch rather than reviving the removed prototype
+
+### [2026-03-29] ABOUT and Selected work reveal motion migrated to GSAP
+- Type:
+  motion polish / about page refinement / selected work update
+- Page:
+  home
+- Section:
+  about sheet / about finale / selected work
+- Summary:
+  Added `gsap` and introduced a shared `ScrollTrigger` reveal hook for editorial section motion. The ABOUT title and paragraph reveal behavior, the finale title reveal, and the Selected work title reveal now use GSAP instead of the old manual reveal helper, while the custom HOME scroll scene remains untouched.
+- Files changed:
+  - `package.json`
+  - `package-lock.json`
+  - `src/lib/gsap-reveal.ts`
+  - `src/components/about-sheet.tsx`
+  - `src/components/about-finale.tsx`
+  - `src/components/portfolio-section.tsx`
+  - `src/lib/scroll-motion.ts`
+  - `docs/file-map.md`
+  - `docs/architecture.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  preserved; the GSAP helper clears reveal transforms and opacity under `prefers-reduced-motion`, and smoke checks were run in a reduced-motion browser context
+- Mobile impact:
+  preserved; mobile smoke checks did not show layout regressions from the reveal migration
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the editorial sections now use GSAP, but the HOME hero still uses the custom scroll-scene runtime by design
+
+### [2026-03-29] HOME hero scene observer migrated to GSAP
+- Type:
+  home identity refinement / motion polish / validation cleanup
+- Page:
+  home
+- Section:
+  hero / manifesto transition / section navigation
+- Summary:
+  Replaced the old HOME scroll-scene subscription with a GSAP `ScrollTrigger` observer inside `hero-scene.tsx`. The hero's visual state sync now updates through GSAP while the riskier manifesto lock wheel/touch interactions remain manual. The old `scroll-motion.ts` runtime was removed, the hero integration test was updated to mock `ScrollTrigger`, and the standalone `typecheck` flow now backfills Next's flaky `cache-life.d.ts` through a small helper script before `tsc`.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `tests/integration/hero-scene.test.tsx`
+  - `src/lib/scroll-motion.ts`
+  - `package.json`
+  - `tsconfig.json`
+  - `scripts/ensure-next-cache-life.mjs`
+  - `docs/file-map.md`
+  - `docs/architecture.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  preserved; reduced motion smoke checks kept the manifesto section non-interactive and prevented the old lock behavior from becoming essential
+- Mobile impact:
+  unchanged in this pass; no mobile-only layout rules were changed and the HOME smoke pass did not show new regressions
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the HOME scene is now partially on GSAP, but manifesto lock and auto-snap are still custom logic and should be treated as a separate refactor if they move later
