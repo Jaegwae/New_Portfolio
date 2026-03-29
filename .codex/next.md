@@ -1,15 +1,15 @@
 # Next
 
 ## Resume point
-Resume after pushing the remaining local changes from this working folder:
-- this folder is now a working Git checkout on `main` with the latest remaining changes already pushed
-- the `public/assets/hero/ascii-figure.png` asset and local workflow doc updates are now on `origin/main`
-- local preview/cache folders remain excluded from day-to-day Git noise here
+Resume after redeploying the favicon update:
+- `src/app/icon.svg` now ships as the live favicon on Firebase Hosting
+- `https://portfolio-a9b1d.web.app/icon.svg` responded with `200` and matched the new monogram asset
+- the favicon release still needs the final Git commit/push in this pass
 
 ## Next actions
-1. use this folder directly for future commits now that Git is fully reconnected here
-2. keep excluding `.tmp-previews` and `.firebase` from everyday Git noise unless they need to be committed later
-3. continue using `npm run deploy:firebase` whenever a live site update is needed after code changes
+1. commit `src/app/icon.svg` and the related task records
+2. push the new commit to `origin/main`
+3. hard-refresh the browser later if the old favicon keeps showing from cache
 
 ## Before editing again
 - reread `AGENTS.md`
@@ -19,4 +19,4 @@ Resume after pushing the remaining local changes from this working folder:
 - check latest `docs/worklog.md`
 
 ## Last known concerns
-- [ ] `public/assets/hero/ascii-figure.png` is a large tracked asset, so future pushes should stay intentional about additional media files
+- [ ] browser favicon caches can be sticky, so the old icon may linger locally even though the new asset is already deployed

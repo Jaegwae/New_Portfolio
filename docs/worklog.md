@@ -21,6 +21,58 @@ Concise history of meaningful portfolio changes.
 
 ## Entries
 
+### [2026-03-29] Bold vector `K.J` favicon deployed live
+- Type:
+  home identity refinement / contact/footer update / performance cleanup
+- Page:
+  site-wide
+- Section:
+  browser favicon / deployment
+- Summary:
+  Redeployed the site with the new vector `K.J` favicon and verified that both the live site and `/icon.svg` endpoint respond successfully with the updated monogram asset.
+- Files changed:
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only republishes the favicon update
+- Mobile impact:
+  unchanged; this pass only republishes the favicon update
+- Tests / checks:
+  `npm run deploy:firebase`
+  `Invoke-WebRequest https://portfolio-a9b1d.web.app`
+  `Invoke-WebRequest https://portfolio-a9b1d.web.app/icon.svg`
+- Remaining concerns:
+  browser favicon caching may still delay the visible update even though the deployed asset is live
+
+### [2026-03-29] Bold vector `K.J` favicon added
+- Type:
+  home identity refinement / responsive layout fix
+- Page:
+  site-wide
+- Section:
+  browser favicon
+- Summary:
+  Added a bold, high-contrast vector `K.J` monogram favicon as `src/app/icon.svg` using direct SVG geometry so it stays stable and legible without relying on runtime text rendering.
+- Files changed:
+  - `src/app/icon.svg`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only adds a static icon asset
+- Mobile impact:
+  unchanged; this pass only changes the browser/app icon
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  a live browser tab check may still want tiny spacing tweaks if the monogram feels too dense at favicon size, and the favicon still needs to be redeployed and committed in this release pass
+
 ### [2026-03-29] Remaining local folder changes pushed from this working copy
 - Type:
   contact/footer update / performance cleanup

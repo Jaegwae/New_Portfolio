@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="K.J monogram favicon">
+  <rect width="256" height="256" rx="56" fill="#0b0b0d" />
+  <path
+    fill="#f5f1e8"
+    d="M50 48h30v63l45-63h35l-51 69 56 91h-35l-40-67-10 13v54H50z"
+  />
+  <circle cx="172" cy="74" r="10" fill="#f5f1e8" />
+  <path
+    fill="#f5f1e8"
+    d="M208 48h-30v108c0 18-8 27-22 27-12 0-19-8-19-21v-6h-28v9c0 28 19 43 46 43 33 0 53-18 53-52z"
+  />
+</svg>

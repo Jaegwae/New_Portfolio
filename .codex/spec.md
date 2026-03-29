@@ -1,7 +1,7 @@
 # Spec
 
 ## Current task
-Commit the remaining local changes from this reconnected working folder and push them to GitHub.
+Deploy and commit the new vector `K.J` favicon update.
 
 ## Task type
 Choose one:
@@ -17,41 +17,49 @@ Choose one:
 - performance cleanup
 
 Current:
+- home identity refinement
 - contact/footer update
 - performance cleanup
 
 ## Background
-- This working folder has already been reconnected to the GitHub repository.
-- A few local changes still remain here: updated task-tracking docs and the user-added `public/assets/hero/ascii-figure.png`.
-- The user wants those remaining local changes pushed from this folder directly.
+- The user wants the site favicon to use a bold `K.J` monogram.
+- They specifically want a vector SVG approach rather than text rendered from a font at runtime.
+- The favicon should stay legible at small tab sizes.
+- The user now wants that favicon change both deployed live and committed to GitHub.
 
 ## In scope
-- [x] review the remaining local changes in this folder
-- [x] commit the remaining meaningful files from this folder
-- [x] push the new commit to the GitHub remote
+- [x] create a path-based SVG favicon for `K.J`
+- [x] add it in the Next app icon location
+- [x] verify the app still builds successfully
+- [x] redeploy the site with the new favicon
+- [x] commit and push the favicon update to GitHub
 
 ## Out of scope
-- [x] making additional UI or motion changes
-- [x] changing deployment config
-- [x] cleaning every untracked local asset outside the current push scope
+- [x] redesigning other brand assets
+- [x] changing layout or motion behavior
+- [x] making unrelated content changes
 
 ## Constraints
-- push from this folder now that Git is reconnected here
-- include the meaningful remaining asset the user left in `public/assets/hero/`
-- keep local cache folders and preview artifacts out of the commit
+- use vector shapes rather than plain text nodes
+- keep the favicon high-contrast and readable at small sizes
+- avoid introducing unrelated app changes
+- push only the favicon change and related task records
 
 ## Acceptance criteria
-- [x] the remaining local docs and hero asset are committed from this folder
-- [x] the new commit is pushed to `origin/main`
-- [x] local preview/cache artifacts remain uncommitted
+- [x] the app has a new vector `K.J` favicon file
+- [x] the favicon uses path/circle shapes instead of font text rendering
+- [x] `npm run lint`, `npm test`, `npm run typecheck`, and `npm run build` pass
+- [x] the live Firebase Hosting site is redeployed with the favicon update
+- [ ] the favicon update is committed and pushed to `origin/main`
 
 ## Likely files involved
-- asset: `public/assets/hero/ascii-figure.png`
+- icon: `src/app/icon.svg`
+- config: `package.json`
 - docs: `.codex/spec.md`
 - docs: `.codex/plans.md`
 - docs: `.codex/next.md`
 - docs: `docs/worklog.md`
 
 ## Risks / watchouts
-- repo concern:
-  only the intended remaining local files should be committed, not local cache folders or preview artifacts
+- legibility concern:
+  the monogram has to stay readable in tiny browser tab sizes, so simplified bold geometry is preferable to intricate lettering
