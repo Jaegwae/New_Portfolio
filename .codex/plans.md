@@ -1,7 +1,7 @@
 # Plan
 
 ## Goal
-Temporarily disable the ABOUT section on the home page without disturbing the remaining section flow.
+Add a clear root README and push the latest project state to GitHub.
 
 ## Current status
 - not started
@@ -13,31 +13,31 @@ Temporarily disable the ABOUT section on the home page without disturbing the re
 Current: done
 
 ## Checklist
-- [x] remove the ABOUT item from the home section nav
-- [x] stop rendering the ABOUT finale on the home page
-- [x] rerun validation
-- [x] update `next.md`
-- [x] append `worklog`
+- [x] inspect current repo and remote sync situation
+- [x] write a root `README.md`
+- [ ] verify the current project state before push
+- [ ] push the latest repo state to GitHub
+- [ ] update `next.md`
+- [ ] append `worklog`
 
 ## Checkpoints
 
-### 1. Home deactivation
-- keep the change inside the home scene composition
-- remove only the visible ABOUT entry points for now
+### 1. README
+- write a concise root README for the current portfolio project
+- include local development and deployment commands
 
 Done when:
-- the home nav and rendered section stack no longer expose ABOUT
+- the repo has an accurate and usable README
 
-### 2. Flow safety
-- keep manifesto, self-introduction, and portfolio behavior intact
-- avoid unnecessary refactors to dormant ABOUT-related state
+### 2. GitHub sync safety
+- sync through the temporary Git clone because the working folder has no `.git`
+- avoid pushing `.tmp-previews` and other local-only artifacts
 
 Done when:
-- the remaining home sections behave the same aside from the ABOUT removal
+- the latest meaningful project state is pushed cleanly to GitHub
 
 ### 3. Validation
-- verify lint/test/typecheck/build output
-- record the temporary ABOUT deactivation in repo docs
+- record the README + GitHub sync in repo docs
 
 Done when:
-- the deactivation pass is validated and recorded
+- the GitHub sync pass is recorded

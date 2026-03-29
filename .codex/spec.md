@@ -1,7 +1,7 @@
 # Spec
 
 ## Current task
-Temporarily disable the ABOUT section on the home page.
+Write a root README and push the latest project state to GitHub.
 
 ## Task type
 Choose one:
@@ -17,42 +17,41 @@ Choose one:
 - performance cleanup
 
 Current:
-- home identity refinement
+- contact/footer update
+- performance cleanup
 
 ## Background
-- The home page currently still renders the final ABOUT section and shows an ABOUT item in the section nav.
-- The user wants that section disabled for now so it can be revisited later.
-- This should be handled as a temporary home-page deactivation, not a broader content or route removal.
+- The latest portfolio state has already been deployed to Firebase Hosting.
+- The user wants the repository itself updated on GitHub as well.
+- Before pushing, the repo should have a usable root `README.md`.
 
 ## In scope
-- [x] remove the ABOUT item from the home section nav
-- [x] stop rendering the final ABOUT section on the home page
-- [x] keep the rest of the home section flow intact
-- [x] rerun relevant validation
+- [x] add a root `README.md` that explains the project clearly
+- [x] keep the README aligned with the current stack and deployment flow
+- [x] push the latest repository state to the existing GitHub remote
 
 ## Out of scope
-- [x] deleting the ABOUT component files
-- [x] changing the dedicated `/about` route
-- [x] retuning unrelated HOME motion or copy
+- [x] making additional UI or motion changes
+- [x] changing the Firebase Hosting target
+- [x] restructuring the project beyond documentation and repo sync
 
 ## Constraints
-- keep the change reversible so the ABOUT section can be restored later
-- do not disturb HOME section order before the removed finale
-- avoid mixing this deactivation with unrelated layout or motion changes
+- keep the README concise, accurate, and useful for collaborators
+- push only meaningful project files, not local preview artifacts
+- preserve the current live deployment setup
 
 ## Acceptance criteria
-- [x] the home section nav no longer shows ABOUT
-- [x] the ABOUT finale no longer renders on the home page
-- [x] existing HOME scroll behavior still works for the remaining sections
-- [x] `npm run lint`, `npm test`, `npm run typecheck`, and `npm run build` pass
+- [x] the repo has a root `README.md`
+- [x] the README reflects the current project and deployment commands
+- [ ] the latest local project state is pushed to the GitHub remote
 
 ## Likely files involved
-- component: `src/components/hero-scene.tsx`
+- docs: `README.md`
 - docs: `.codex/spec.md`
 - docs: `.codex/plans.md`
 - docs: `.codex/next.md`
 - docs: `docs/worklog.md`
 
 ## Risks / watchouts
-- state concern:
-  the home scroll/nav logic still contains dormant ABOUT references, so the visible deactivation should be verified without over-refactoring
+- repo concern:
+  this working folder is not a Git checkout, so GitHub sync should be done through the temporary clone without including local preview artifacts

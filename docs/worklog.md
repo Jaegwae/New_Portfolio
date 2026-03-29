@@ -21,6 +21,164 @@ Concise history of meaningful portfolio changes.
 
 ## Entries
 
+### [2026-03-29] Root README added before GitHub sync
+- Type:
+  contact/footer update / performance cleanup
+- Page:
+  repo-wide
+- Section:
+  repository documentation
+- Summary:
+  Added a root README that explains the portfolio purpose, stack, development commands, and Firebase deployment flow before syncing the latest project state to GitHub.
+- Files changed:
+  - `README.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only adds repository documentation
+- Mobile impact:
+  unchanged; this pass only adds repository documentation
+- Tests / checks:
+  pending GitHub sync step
+- Remaining concerns:
+  the latest repo state still needs to be pushed through the temporary Git clone without including local preview artifacts
+
+### [2026-03-29] Latest self-introduction title rendering change redeployed
+- Type:
+  contact/footer update / performance cleanup
+- Page:
+  site-wide
+- Section:
+  deployment / hosting
+- Summary:
+  Rebuilt and redeployed the latest self-introduction title rendering change so the live Firebase Hosting site now reflects the new `<br/>`-only line-break behavior.
+- Files changed:
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only republishes the current build
+- Mobile impact:
+  unchanged; this pass only republishes the current build
+- Tests / checks:
+  `npm run deploy:firebase`
+  `Invoke-WebRequest https://portfolio-a9b1d.web.app`
+- Remaining concerns:
+  if a browser still shows the previous title behavior, it may need a hard refresh before another deploy is attempted
+
+### [2026-03-29] Self-introduction title now breaks only on explicit `<br/>`
+- Type:
+  about page refinement / responsive layout fix
+- Page:
+  home
+- Section:
+  self-introduction title
+- Summary:
+  Removed the automatic space-based title splitting in the self-introduction section so the title renders as a normal line by default and only breaks when the content includes an explicit `<br/>`.
+- Files changed:
+  - `src/components/about-sheet.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only adjusts title rendering logic
+- Mobile impact:
+  improved consistency; the title no longer forces extra line breaks just because it contains spaces
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  if manual `<br/>` breaks are added later, the resulting line breaks may still want a small breakpoint-specific typography tweak
+
+### [2026-03-29] Latest portfolio state redeployed to Firebase Hosting
+- Type:
+  contact/footer update / performance cleanup
+- Page:
+  site-wide
+- Section:
+  deployment / hosting
+- Summary:
+  Rebuilt the latest site state and redeployed it to Firebase Hosting so the current self-introduction spacing adjustment and recent home changes are live on `https://portfolio-a9b1d.web.app/`.
+- Files changed:
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only republishes the current build
+- Mobile impact:
+  unchanged; this pass only republishes the current build
+- Tests / checks:
+  `npm run deploy:firebase`
+  `Invoke-WebRequest https://portfolio-a9b1d.web.app`
+- Remaining concerns:
+  if a browser still shows the previous version, it may need a hard refresh before another deploy is attempted
+
+### [2026-03-29] Self-introduction desktop title/body spacing tightened
+- Type:
+  about page refinement / responsive layout fix
+- Page:
+  home
+- Section:
+  self-introduction title/body layout
+- Summary:
+  Added a narrower large-desktop override so the self-introduction title column and body column sit closer together on tighter desktop ratios while keeping the existing two-column composition.
+- Files changed:
+  - `src/app/globals.css`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only adjusts static responsive spacing
+- Mobile impact:
+  unchanged; the spacing tweak is limited to a narrower large-desktop range
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  Safari may still want one more small gap tweak depending on viewport chrome and exact width
+
+### [2026-03-29] Firebase Hosting connected and live site redeployed
+- Type:
+  contact/footer update / performance cleanup
+- Page:
+  site-wide
+- Section:
+  deployment / hosting
+- Summary:
+  Connected the repo to Firebase project `portfolio-a9b1d`, configured the current Next app for static export Hosting, and replaced the live `https://portfolio-a9b1d.web.app/` deployment with the current portfolio build.
+- Files changed:
+  - `.firebaserc`
+  - `firebase.json`
+  - `next.config.ts`
+  - `package.json`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only changes deployment configuration
+- Mobile impact:
+  unchanged; the same built site is now served from Firebase Hosting
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `firebase deploy --only hosting --project portfolio-a9b1d`
+  `Invoke-WebRequest https://portfolio-a9b1d.web.app`
+- Remaining concerns:
+  the current deployment path assumes static export, so future SSR features would require a different Firebase setup
+
 ### [2026-03-29] HOME ABOUT section temporarily disabled
 - Type:
   home identity refinement

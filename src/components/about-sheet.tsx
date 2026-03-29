@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 
 import { ABOUT_SHEET_CONTENT } from "@/content/about-sheet";
 import { useGsapScrollReveal } from "@/lib/gsap-reveal";
@@ -8,7 +8,10 @@ import { useGsapScrollReveal } from "@/lib/gsap-reveal";
 export function AboutSheet() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const paragraphRefs = useRef<Array<HTMLParagraphElement | null>>([]);
-  const titleWords = ABOUT_SHEET_CONTENT.title.split(/\s+/).filter(Boolean);
+  const titleLines = ABOUT_SHEET_CONTENT.title
+    .split(/<br\s*\/?>/i)
+    .map((line) => line.trim())
+    .filter(Boolean);
 
   useGsapScrollReveal(() => [
     {
@@ -34,10 +37,11 @@ export function AboutSheet() {
           <div className="about-sheet__hero">
             <p className="about-sheet__eyebrow">{ABOUT_SHEET_CONTENT.eyebrow}</p>
             <h2 className="about-sheet__title" id="about-sheet-title" ref={titleRef}>
-              {titleWords.map((word) => (
-                <span className="about-sheet__title-word" key={word}>
-                  {word}
-                </span>
+              {titleLines.map((line, index) => (
+                <Fragment key={`${line}-${index}`}>
+                  {line}
+                  {index < titleLines.length - 1 ? <br /> : null}
+                </Fragment>
               ))}
             </h2>
           </div>

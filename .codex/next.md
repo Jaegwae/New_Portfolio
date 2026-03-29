@@ -1,15 +1,15 @@
 # Next
 
 ## Resume point
-Resume after the temporary ABOUT deactivation pass:
-- `hero-scene.tsx` no longer shows ABOUT in the home section nav
-- the final ABOUT section is no longer rendered on the home page
-- the underlying ABOUT-related home state was left mostly dormant for easier restoration later
+Resume after adding a root README:
+- `README.md` now documents the portfolio overview, stack, scripts, and Firebase deployment flow
+- the working folder still has no `.git`, so GitHub sync must go through the temporary clone
+- the live Firebase site is already up to date before this GitHub push task
 
 ## Next actions
-1. if the user wants ABOUT restored later, decide whether to re-enable only the home finale or also rethink its content and placement
-2. if dormant ABOUT-related hero state starts feeling unnecessary, do a separate cleanup pass instead of mixing it into layout work
-3. keep future home changes focused on the now-visible sections: HOME, slogan, self-introduction, and portfolio
+1. sync the latest local project state into the temporary Git clone
+2. commit and push the README plus the current project changes to GitHub
+3. keep excluding local preview artifacts from the GitHub push
 
 ## Before editing again
 - reread `AGENTS.md`
@@ -19,4 +19,4 @@ Resume after the temporary ABOUT deactivation pass:
 - check latest `docs/worklog.md`
 
 ## Last known concerns
-- [ ] if ABOUT stays disabled for a while, a later cleanup pass can remove the dormant home-scene state that still references it internally
+- [ ] the temporary clone currently contains untracked local preview artifacts that should stay out of the GitHub commit
