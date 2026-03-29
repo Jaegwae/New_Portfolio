@@ -1,15 +1,15 @@
 # Next
 
 ## Resume point
-Resume after preparing the final local push from this working folder:
-- this folder is now a working Git checkout on `main`
-- the remaining local changes are the `.codex` docs, `docs/worklog.md`, and `public/assets/hero/ascii-figure.png`
-- local preview/cache folders are still excluded from the intended commit
+Resume after pushing the remaining local changes from this working folder:
+- this folder is now a working Git checkout on `main` with the latest remaining changes already pushed
+- the `public/assets/hero/ascii-figure.png` asset and local workflow doc updates are now on `origin/main`
+- local preview/cache folders remain excluded from day-to-day Git noise here
 
 ## Next actions
-1. stage the remaining local files from this folder
-2. commit and push them to `origin/main`
-3. confirm this folder is clean or only contains intentionally untracked local artifacts afterward
+1. use this folder directly for future commits now that Git is fully reconnected here
+2. keep excluding `.tmp-previews` and `.firebase` from everyday Git noise unless they need to be committed later
+3. continue using `npm run deploy:firebase` whenever a live site update is needed after code changes
 
 ## Before editing again
 - reread `AGENTS.md`
@@ -19,4 +19,4 @@ Resume after preparing the final local push from this working folder:
 - check latest `docs/worklog.md`
 
 ## Last known concerns
-- [ ] `public/assets/hero/ascii-figure.png` is a large tracked asset, so the final commit should stay limited to that file plus the remaining docs
+- [ ] `public/assets/hero/ascii-figure.png` is a large tracked asset, so future pushes should stay intentional about additional media files

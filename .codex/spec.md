@@ -42,7 +42,7 @@ Current:
 
 ## Acceptance criteria
 - [x] the remaining local docs and hero asset are committed from this folder
-- [ ] the new commit is pushed to `origin/main`
+- [x] the new commit is pushed to `origin/main`
 - [x] local preview/cache artifacts remain uncommitted
 
 ## Likely files involved

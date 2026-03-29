@@ -15,10 +15,10 @@ Current: done
 ## Checklist
 - [x] inspect the remaining local changes
 - [x] keep only meaningful files in scope
-- [ ] create a commit from this folder
-- [ ] push to GitHub from this folder
-- [ ] update `next.md`
-- [ ] append `worklog`
+- [x] create a commit from this folder
+- [x] push to GitHub from this folder
+- [x] update `next.md`
+- [x] append `worklog`
 
 ## Checkpoints
 

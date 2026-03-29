@@ -21,6 +21,32 @@ Concise history of meaningful portfolio changes.
 
 ## Entries
 
+### [2026-03-29] Remaining local folder changes pushed from this working copy
+- Type:
+  contact/footer update / performance cleanup
+- Page:
+  repo-wide
+- Section:
+  repository / local Git workflow
+- Summary:
+  Committed and pushed the remaining local workflow docs plus `public/assets/hero/ascii-figure.png` directly from this now-reconnected working folder, so future Git work can continue here instead of through the temporary clone.
+- Files changed:
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+  - `public/assets/hero/ascii-figure.png`
+- Reduced motion impact:
+  unchanged; this pass only syncs repository state and a tracked asset
+- Mobile impact:
+  unchanged; this pass only syncs repository state and a tracked asset
+- Tests / checks:
+  `git status --short`
+  `git log --oneline -1`
+  `git push origin main`
+- Remaining concerns:
+  future large media additions should still be reviewed intentionally before pushing
+
 ### [2026-03-29] Remaining local folder changes prepared for direct Git push
 - Type:
   contact/footer update / performance cleanup
