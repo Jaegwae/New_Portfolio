@@ -17,9 +17,9 @@ Current: done
 - [x] place it in the app icon entry point
 - [x] rerun validation
 - [x] redeploy the site
-- [ ] commit and push the change
-- [ ] update `next.md`
-- [ ] append `worklog`
+- [x] commit and push the change
+- [x] update `next.md`
+- [x] append `worklog`
 
 ## Checkpoints
 

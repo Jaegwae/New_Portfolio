@@ -50,7 +50,7 @@ Current:
 - [x] the favicon uses path/circle shapes instead of font text rendering
 - [x] `npm run lint`, `npm test`, `npm run typecheck`, and `npm run build` pass
 - [x] the live Firebase Hosting site is redeployed with the favicon update
-- [ ] the favicon update is committed and pushed to `origin/main`
+- [x] the favicon update is committed and pushed to `origin/main`
 
 ## Likely files involved
 - icon: `src/app/icon.svg`

@@ -21,6 +21,31 @@ Concise history of meaningful portfolio changes.
 
 ## Entries
 
+### [2026-03-29] Bold vector `K.J` favicon committed and pushed
+- Type:
+  home identity refinement / contact/footer update / performance cleanup
+- Page:
+  site-wide
+- Section:
+  browser favicon / repository sync
+- Summary:
+  Finished the favicon release by committing `src/app/icon.svg` and the related task records, then pushing the update to `origin/main` after the live Firebase deploy was confirmed.
+- Files changed:
+  - `src/app/icon.svg`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only syncs the favicon release and task records
+- Mobile impact:
+  unchanged; this pass only syncs the favicon release and task records
+- Tests / checks:
+  `git log --oneline -1`
+  `git push origin main`
+- Remaining concerns:
+  favicon caches may still delay the visible tab-icon update in some browsers
+
 ### [2026-03-29] Bold vector `K.J` favicon deployed live
 - Type:
   home identity refinement / contact/footer update / performance cleanup
