@@ -99,7 +99,7 @@ const HERO_PROFILE_ITEMS: ReadonlyArray<{
 }> = [
   {
     label: "생년월일",
-    value: "2000.03.30 (만 25세)",
+    value: "2000.03.30 (만 26세)",
   },
   {
     label: "이메일",

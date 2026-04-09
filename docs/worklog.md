@@ -21,6 +21,35 @@ Concise history of meaningful portfolio changes.
 
 ## Entries
 
+### [2026-04-09] Home profile age updated to 만 26세
+- Type:
+  home identity refinement
+- Page:
+  home
+- Section:
+  hero profile
+- Summary:
+  Updated the home hero birth-date line from `2000.03.30 (만 25세)` to `2000.03.30 (만 26세)`, validated the app, redeployed Firebase Hosting, and synced the release records for Git.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only updates static profile text and task records
+- Mobile impact:
+  unchanged; this pass only updates a short text value in the existing hero profile layout
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npx firebase-tools deploy --only hosting`
+  `curl -L https://portfolio-a9b1d.web.app`
+- Remaining concerns:
+  any separately managed profile surface outside this repo may still need the same age update
+
 ### [2026-03-29] Bold vector `K.J` favicon committed and pushed
 - Type:
   home identity refinement / contact/footer update / performance cleanup

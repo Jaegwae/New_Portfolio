@@ -1,7 +1,7 @@
 # Plan
 
 ## Goal
-Deploy and commit the new bold vector `K.J` favicon update.
+Deploy and commit the home profile age text update to `만 26세`.
 
 ## Current status
 - not started
@@ -13,8 +13,7 @@ Deploy and commit the new bold vector `K.J` favicon update.
 Current: done
 
 ## Checklist
-- [x] create the vector monogram favicon
-- [x] place it in the app icon entry point
+- [x] update the hero profile age text
 - [x] rerun validation
 - [x] redeploy the site
 - [x] commit and push the change
@@ -23,30 +22,30 @@ Current: done
 
 ## Checkpoints
 
-### 1. Icon design
-- keep the favicon simple, bold, and high-contrast
-- use SVG shapes instead of text rendering
+### 1. Content fix
+- update only the displayed age value in the hero profile
+- keep the birth date string and layout unchanged
 
 Done when:
-- the favicon is present as a vector `K.J` mark in the app
+- the home profile reads `2000.03.30 (만 26세)`
 
 ### 2. App safety
-- add the icon without touching unrelated UI or routing code
-- ensure the app still builds with the new icon asset
+- avoid unrelated UI or motion edits
+- ensure the app still validates after the text change
 
 Done when:
-- the favicon integrates cleanly into the Next app
+- the age update integrates cleanly into the home route
 
 ### 3. Release
-- redeploy the app so the favicon is live
-- commit and push the favicon update and related records
+- redeploy the app so the age update is live
+- commit and push the age update and related records
 
 Done when:
-- the favicon change is live and synced to GitHub
+- the age update is live and synced to GitHub
 
 ### 4. Validation
 - verify deployment and post-push Git state
-- record the favicon release in repo docs
+- record the age update in repo docs
 
 Done when:
-- the favicon pass is validated and recorded
+- the age update is validated and recorded
