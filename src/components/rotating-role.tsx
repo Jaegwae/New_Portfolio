@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * AI_NOTE:
+ * Role: typewriter-like rotating role line for the hero.
+ * Pausing should freeze the current animation state rather than recomputing a new word.
+ */
+
 import { useEffect, useMemo, useState } from "react";
 
 const roles = [
@@ -20,6 +26,8 @@ type RotatingRoleInnerProps = {
 };
 
 export function RotatingRoleInner({ paused }: RotatingRoleInnerProps) {
+  // AI_CONTEXT:
+  // This is a tiny typewriter state machine: role index + displayed substring + deleting phase.
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -31,6 +39,7 @@ export function RotatingRoleInner({ paused }: RotatingRoleInnerProps) {
 
   useEffect(() => {
     if (paused) {
+      // AI_CONTEXT: pausing intentionally freezes the current intermediate visual state.
       return;
     }
 
@@ -39,18 +48,22 @@ export function RotatingRoleInner({ paused }: RotatingRoleInnerProps) {
     let timeoutId: ReturnType<typeof setTimeout>;
 
     if (!isDeleting && displayed !== currentRole) {
+      // AI_CONTEXT: typing forward one character at a time
       timeoutId = setTimeout(() => {
         setDisplayed(currentRole.slice(0, displayed.length + 1));
       }, TYPE_SPEED);
     } else if (!isDeleting && displayed === currentRole) {
+      // AI_CONTEXT: briefly hold the fully typed word before deleting
       timeoutId = setTimeout(() => {
         setIsDeleting(true);
       }, HOLD_DELAY);
     } else if (isDeleting && displayed.length > 0) {
+      // AI_CONTEXT: delete one character at a time
       timeoutId = setTimeout(() => {
         setDisplayed(currentRole.slice(0, displayed.length - 1));
       }, DELETE_SPEED);
     } else {
+      // AI_CONTEXT: once empty, advance to the next role and restart typing
       timeoutId = setTimeout(() => {
         setIsDeleting(false);
         setRoleIndex((current) => (current + 1) % roles.length);

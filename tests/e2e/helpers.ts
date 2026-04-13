@@ -4,9 +4,32 @@ const NAV_TIMEOUT_MS = 12_000;
 const HOME_TOP_TOLERANCE_PX = 40;
 const VIEWPORT_EDGE_MARGIN_PX = 48;
 
+async function waitForAnimationFrames(page: Page, frameCount = 2) {
+  await page.evaluate(async (count) => {
+    await new Promise<void>((resolve) => {
+      let remaining = count;
+
+      const step = () => {
+        remaining -= 1;
+
+        if (remaining <= 0) {
+          resolve();
+          return;
+        }
+
+        window.requestAnimationFrame(step);
+      };
+
+      window.requestAnimationFrame(step);
+    });
+  }, frameCount);
+}
+
 export async function openHome(page: Page) {
   await page.goto("/");
   await expect(page.locator(".hero-heading")).toBeVisible();
+  await expect(page.locator(".manifesto-anchor")).toBeVisible();
+  await expect(page.locator(".portfolio-anchor")).toBeVisible();
   try {
     await expect
       .poll(
@@ -20,7 +43,7 @@ export async function openHome(page: Page) {
   } catch {
     // Reduced-motion and headless runs do not always expose the typing state in time.
   }
-  await page.waitForTimeout(3500);
+  await waitForAnimationFrames(page, 3);
 }
 
 export async function expectHomeAtTop(page: Page) {
@@ -46,5 +69,5 @@ export async function jumpToSection(page: Page, selector: string, offset = 32) {
   await page
     .locator(selector)
     .evaluate((node, topOffset) => window.scrollTo(0, window.scrollY + node.getBoundingClientRect().top - topOffset), offset);
-  await page.waitForTimeout(200);
+  await waitForAnimationFrames(page, 2);
 }

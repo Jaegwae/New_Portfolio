@@ -1,7 +1,7 @@
 # Spec
 
 ## Current task
-Deploy and commit the home profile age text update from `만 25세` to `만 26세`.
+Clean up the repository docs so the active guidance matches the current local codebase.
 
 ## Task type
 Choose one:
@@ -17,42 +17,50 @@ Choose one:
 - performance cleanup
 
 Current:
-- home identity refinement
+- performance cleanup
 
 ## Background
-- The home hero profile currently shows the birth date line as `2000.03.30 (만 25세)`.
-- As of April 9, 2026 in the user's locale, the displayed age should now read `만 26세`.
-- The user wants that text update deployed live and pushed to GitHub.
+- The active docs have already been aligned with the current codebase.
+- The user then requested a much denser AI-readable commenting pass across the actual source files so future AI edits are easier and safer.
+- This pass should update source/style comments only; runtime behavior must stay unchanged.
 
 ## In scope
-- [x] update the home profile age text to `만 26세`
-- [x] verify the app still passes the repository checks
-- [x] redeploy the site with the updated age text
-- [x] commit and push the age update to GitHub
+- [x] add detailed AI-readable comments across the meaningful source/style logic boundaries
+- [x] keep comments descriptive enough for future AI edits without changing behavior
+- [x] rerun local validation after the commenting pass
 
 ## Out of scope
-- [x] redesigning layout or motion
-- [x] changing unrelated profile copy
-- [x] making unrelated content changes
+- [x] rewriting historical worklog entries
+- [x] changing runtime behavior just to fit comments
+- [x] any GitHub, commit, push, or deployment action
 
 ## Constraints
-- keep the birth date line format the same except for the age value
-- avoid introducing unrelated app changes
-- push only the age update and related task records
+- keep the visible home/portfolio behavior unchanged
+- keep comments grounded in the actual current code responsibilities
+- use local validation only
+- do not touch GitHub or deployment surfaces in this pass
 
 ## Acceptance criteria
 - [x] the app shows `2000.03.30 (만 26세)` in the home profile
+- [x] the main source/style files now contain detailed AI-readable comments around meaningful logic boundaries
+- [x] repository behavior remains unchanged under the existing unit, integration, and e2e checks
+- [x] repository behavior remains unchanged under the existing unit, integration, and e2e checks
 - [x] `npm run lint`, `npm test`, `npm run typecheck`, and `npm run build` pass
-- [x] the live Firebase Hosting site is redeployed with the age update
-- [x] the age update is committed and pushed to `origin/main`
+- [x] `npm run test:e2e` passes locally
 
 ## Likely files involved
-- component: `src/components/hero-scene.tsx`
+- app: `src/app/*.tsx`
+- styles: `src/app/styles/*.css`
+- components: `src/components/*.tsx`
+- content: `src/content/*.ts`
+- lib: `src/lib/*.ts`
 - docs: `.codex/spec.md`
 - docs: `.codex/plans.md`
 - docs: `.codex/next.md`
 - docs: `docs/worklog.md`
 
 ## Risks / watchouts
-- stale deploy concern:
-  the live site could still show the old age until the latest build is deployed successfully
+- comment-drift risk:
+  dense AI-readable comments can become stale if future refactors update ownership without updating comments together
+- environment note:
+  this working folder currently has no `.git` directory, so Git status/commit verification is unavailable from here

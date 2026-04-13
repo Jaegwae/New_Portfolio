@@ -1,18 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+/**
+ * AI_NOTE:
+ * Role: project-detail modal renderer.
+ * Accessibility side effects (scroll lock, focus trap, focus return) are delegated to dedicated hooks in src/lib/.
+ */
+
+import { useRef } from "react";
 import Image from "next/image";
 
 import type { PortfolioProject } from "@/content/portfolio-projects";
-
-const FOCUSABLE_SELECTOR = [
-  'a[href]',
-  'button:not([disabled])',
-  'input:not([disabled])',
-  'select:not([disabled])',
-  'textarea:not([disabled])',
-  '[tabindex]:not([tabindex="-1"])',
-].join(", ");
+import { useBodyScrollLock } from "@/lib/use-body-scroll-lock";
+import { useFocusReturn } from "@/lib/use-focus-return";
+import { useFocusTrap } from "@/lib/use-focus-trap";
 
 type PortfolioModalProps = {
   project: PortfolioProject | null;
@@ -20,84 +20,28 @@ type PortfolioModalProps = {
 };
 
 export function PortfolioModal({ project, onClose }: PortfolioModalProps) {
+  // AI_CONTEXT:
+  // Refs are consumed by accessibility hooks rather than inline imperative logic.
+  // Keep focus/scroll side effects in src/lib hooks, not in this component body.
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const previousFocusedElementRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    if (!project) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    previousFocusedElementRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-
-    const getFocusableElements = () => {
-      const overlay = overlayRef.current;
-
-      if (!overlay) {
-        return [];
-      }
-
-      return Array.from(overlay.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
-        (element) => !element.hasAttribute("disabled") && element.getAttribute("aria-hidden") !== "true",
-      );
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        onClose();
-        return;
-      }
-
-      if (event.key !== "Tab") {
-        return;
-      }
-
-      const overlay = overlayRef.current;
-      const focusableElements = getFocusableElements();
-
-      if (!overlay || focusableElements.length === 0) {
-        event.preventDefault();
-        closeButtonRef.current?.focus();
-        return;
-      }
-
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-      const activeElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-      const isFocusInsideOverlay = !!activeElement && overlay.contains(activeElement);
-
-      if (event.shiftKey) {
-        if (!isFocusInsideOverlay || activeElement === firstElement) {
-          event.preventDefault();
-          lastElement.focus();
-        }
-
-        return;
-      }
-
-      if (!isFocusInsideOverlay || activeElement === lastElement) {
-        event.preventDefault();
-        firstElement.focus();
-      }
-    };
-
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-    window.requestAnimationFrame(() => {
-      closeButtonRef.current?.focus();
-    });
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-      previousFocusedElementRef.current?.focus();
-    };
-  }, [onClose, project]);
+  // AI_CONTEXT:
+  // These hooks intentionally model three separate modal concerns:
+  // body scroll lock, focus return, and in-modal focus trapping.
+  useBodyScrollLock(!!project);
+  useFocusReturn(!!project);
+  useFocusTrap({
+    active: !!project,
+    containerRef: overlayRef,
+    initialFocusRef: closeButtonRef,
+    onEscape: onClose,
+  });
 
   if (!project) {
+    // AI_CONTEXT:
+    // Null-render is the modal's inactive state.
+    // Side-effect hooks above key off the same boolean so lifecycle stays aligned.
     return null;
   }
 

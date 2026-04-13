@@ -1,15 +1,15 @@
 # Next
 
 ## Resume point
-Resume after fully releasing the home age update:
-- the home hero profile now reads `2000.03.30 (만 26세)`
-- the live Firebase Hosting site reflects the updated age text
-- the age update is committed and pushed on `origin/main`
+Resume after the detailed source-commenting pass:
+- the main source/style files now include denser AI-readable comments around meaningful logic boundaries
+- the full local validation suite still passes after the comment pass
+- lint, unit/integration tests, typecheck, build, and Playwright smoke tests all pass locally
 
 ## Next actions
-1. review other time-sensitive profile details periodically so age or year-based copy does not go stale
-2. if any mirrored resume/contact copy still shows the old age, update those surfaces in the same narrow pass
-3. keep future profile copy releases scoped so motion and layout remain untouched
+1. keep comments updated whenever ownership or runtime flow changes again
+2. consider deeper responsive/style cleanup if the remaining large CSS files start to slow down maintenance
+3. consider adding a lightweight component-level test around `HeroFluidBackground` wiring if more runtime refactors are planned
 
 ## Before editing again
 - reread `AGENTS.md`
@@ -19,4 +19,5 @@ Resume after fully releasing the home age update:
 - check latest `docs/worklog.md`
 
 ## Last known concerns
-- [ ] any separately managed profile surface outside this repo could still show the previous age until it is updated independently
+- [ ] `hero-scene.tsx` is smaller but still owns a lot of orchestration logic
+- [ ] this working folder has no `.git` directory, so Git-based verification still cannot run here

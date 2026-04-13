@@ -66,7 +66,8 @@ npm run deploy:firebase
 ## Project Structure
 
 ```text
-src/app/          Route entry and global styles
+src/app/          Route entry, app shell, and style entrypoint
+src/app/styles/   Imported style partials for the live route
 src/components/   Home sections and shared UI
 src/content/      Portfolio and copy content
 src/lib/          Shared helpers and motion utilities
@@ -77,5 +78,5 @@ docs/             Project maps and working notes
 ## Notes
 
 - The current Firebase Hosting setup uses static export.
-- Self-introduction title line breaks are controlled with explicit `<br/>`.
+- Self-introduction title line breaks are controlled from structured content data in `src/content/about-sheet.ts`.
 - Reduced motion behavior is preserved across the main sections.

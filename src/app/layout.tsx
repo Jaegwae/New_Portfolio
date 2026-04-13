@@ -1,3 +1,10 @@
+/**
+ * AI_NOTE:
+ * Role: Root app shell.
+ * Owns global CSS import order and the smooth-scroll provider wrapper.
+ * Safe edits: metadata, top-level providers, document language/body structure.
+ */
+
 import type { Metadata } from "next";
 
 import "lenis/dist/lenis.css";

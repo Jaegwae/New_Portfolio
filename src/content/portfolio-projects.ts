@@ -1,3 +1,9 @@
+/**
+ * AI_NOTE:
+ * Role: canonical project/filter data for the selected-work section and modal.
+ * Keep display-safe metadata here; avoid mixing UI-only state or component logic into this file.
+ */
+
 export type PortfolioProject = {
   id: string;
   title: string;

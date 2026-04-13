@@ -2,16 +2,8 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
-vi.mock("@/lib/scroll-motion", () => ({
-  DEFAULT_SECTION_TITLE_REVEAL: {
-    enterOffset: 58,
-    exitOffset: 42,
-    fadeInStart: 0.04,
-    fadeInEnd: 0.22,
-  },
-  applyRevealStyles: vi.fn(),
-  resetRevealStyles: vi.fn(),
-  useScrollScene: vi.fn(),
+vi.mock("@/lib/gsap-reveal", () => ({
+  useGsapScrollReveal: vi.fn(),
 }));
 
 import { PortfolioSection } from "@/components/portfolio-section";
@@ -42,6 +34,8 @@ describe("PortfolioSection integration", () => {
     const launcher = screen.getByRole("button", { name: "Plimo 상세 보기" });
     await user.click(launcher);
 
+    expect(document.body.style.overflow).toBe("hidden");
+
     const dialog = await screen.findByRole("dialog", { name: "Plimo" });
     const closeButton = within(dialog).getByRole("button", { name: "모달 닫기" });
     const githubLink = within(dialog).getByRole("link", { name: "GitHub" });
@@ -61,6 +55,7 @@ describe("PortfolioSection integration", () => {
     await waitFor(() => {
       expect(screen.queryByRole("dialog", { name: "Plimo" })).not.toBeInTheDocument();
     });
+    expect(document.body.style.overflow).toBe("");
     expect(launcher).toHaveFocus();
   });
 });

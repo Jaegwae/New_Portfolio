@@ -1,0 +1,162 @@
+/* AI_NOTE:
+   Scope: about-sheet section visuals only.
+   Content structure comes from src/content/about-sheet.ts and component markup in AboutSheet.
+*/
+
+.about-sheet-anchor {
+  position: relative;
+  z-index: 4;
+  margin-top: -1px;
+}
+
+.about-sheet {
+  position: relative;
+  min-height: 108svh;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  background:
+    linear-gradient(180deg, oklch(0.985 0.002 95) 0%, oklch(0.967 0.002 95) 100%);
+  color: oklch(0.2 0.01 285);
+  box-shadow:
+    0 -1px 0 oklch(0.85 0.005 95 / calc(var(--cover-progress, 0) * 0.7)),
+    0 -1.65rem 3.2rem oklch(0 0 0 / calc(var(--cover-progress, 0) * 0.17));
+  isolation: isolate;
+  transform: translate3d(0, calc((1 - var(--cover-progress, 0)) * 1rem), 0);
+}
+
+.about-sheet::before {
+  position: absolute;
+  inset: 0;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background:
+    radial-gradient(circle at 16% 0%, oklch(1 0 0 / 0.92) 0%, transparent 28%),
+    linear-gradient(180deg, oklch(1 0 0 / 0.72) 0%, transparent 16%);
+  opacity: calc(var(--cover-progress, 0) * 0.85);
+  pointer-events: none;
+  content: "";
+}
+
+.about-sheet__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: start;
+  align-items: start;
+  justify-items: stretch;
+  min-height: 108svh;
+  gap: 2.65rem;
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: clamp(5.2rem, 7.8vw, 7.2rem) clamp(2.4rem, 5vw, 4rem) 7rem clamp(4.2rem, 9vw, 9rem);
+}
+
+.about-sheet__main {
+  display: grid;
+  gap: 2.7rem;
+  width: min(68rem, 100%);
+  justify-self: start;
+}
+
+.about-sheet__hero {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: clamp(1rem, 1.8vw, 1.6rem);
+  justify-items: start;
+  max-width: min(68rem, 100%);
+  text-align: left;
+}
+
+.about-sheet__eyebrow {
+  margin: 0;
+  display: none;
+  color: oklch(0.42 0.01 285);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.about-sheet__title {
+  max-width: min(68rem, 100%);
+  margin: 0;
+  white-space: normal;
+  font-size: clamp(2.95rem, 4.7vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: oklch(0.16 0.008 285);
+  text-align: left;
+  opacity: var(--reveal-opacity, 1);
+  transform: translate3d(0, var(--reveal-shift, 0px), 0);
+}
+
+.about-sheet__body {
+  display: grid;
+  gap: 1.08rem;
+  width: min(68rem, 100%);
+  margin: 0;
+}
+
+.about-sheet__paragraph {
+  margin: 0;
+  color: oklch(0.27 0.01 285);
+  font-size: clamp(1.03rem, 1.18vw, 1.1rem);
+  line-height: 1.95;
+  letter-spacing: -0.04em;
+  text-align: left;
+  white-space: pre-line;
+  opacity: var(--reveal-opacity, 1);
+  transform: translate3d(0, var(--reveal-shift, 0px), 0);
+}
+
+@media (min-width: 1500px) {
+  .about-sheet__content {
+    max-width: 112rem;
+    padding-inline: clamp(3rem, 4.6vw, 5.4rem);
+  }
+
+  .about-sheet__main {
+    grid-template-columns: minmax(18rem, 24rem) minmax(0, 60rem);
+    column-gap: clamp(3rem, 5.4vw, 6.5rem);
+    row-gap: 0;
+    align-items: start;
+    width: min(99rem, 100%);
+  }
+
+  .about-sheet__hero {
+    gap: 1.25rem;
+    max-width: none;
+    margin-top: clamp(1.2rem, 1.6vw, 2rem);
+  }
+
+  .about-sheet__title {
+    max-width: 22rem;
+    font-size: clamp(3.3rem, 3.7vw, 4.85rem);
+  }
+
+  .about-sheet__body {
+    width: min(60rem, 100%);
+    gap: 1.2rem;
+  }
+
+  .about-sheet__paragraph {
+    font-size: clamp(1.08rem, 0.92vw, 1.18rem);
+  }
+}
+
+@media (min-width: 1500px) and (max-width: 1820px) {
+  .about-sheet__main {
+    grid-template-columns: minmax(16.5rem, 20rem) minmax(0, 56rem);
+    column-gap: clamp(2rem, 3.4vw, 3.8rem);
+    width: min(86rem, 100%);
+  }
+
+  .about-sheet__title {
+    max-width: 19rem;
+  }
+
+  .about-sheet__body {
+    width: min(56rem, 100%);
+  }
+}
+

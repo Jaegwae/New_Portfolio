@@ -1,0 +1,63 @@
+/* AI_NOTE:
+   Scope: manifesto section visuals only.
+   Keep this isolated from about/portfolio styling.
+*/
+
+.manifesto-anchor {
+  position: relative;
+  z-index: 3;
+  margin-top: 100svh;
+}
+
+.manifesto-section {
+  position: relative;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 18% 18%, oklch(0.22 0.008 285 / 0.24) 0%, transparent 26%),
+    radial-gradient(circle at 82% 24%, oklch(0.2 0.008 285 / 0.18) 0%, transparent 22%),
+    linear-gradient(180deg, color-mix(in srgb, var(--panel) 84%, black) 0%, var(--bg) 100%);
+  color: oklch(0.95 0.004 95);
+}
+
+.manifesto-section__sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.4rem, 4vw, 3rem) clamp(3rem, 5vw, 4rem);
+}
+
+.manifesto-section__copy {
+  --manifesto-copy-offset: clamp(1.25rem, 4vw, 4.5rem);
+  display: grid;
+  justify-items: start;
+  gap: clamp(1.95rem, 2.9vw, 3rem);
+  width: min(calc(100% - var(--manifesto-copy-offset)), 94rem);
+  max-width: calc(100% - var(--manifesto-copy-offset));
+  margin-left: var(--manifesto-copy-offset);
+  padding-left: 0;
+}
+
+.manifesto-section__line {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 0.14em 0.18em;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(3.2rem, 6.9vw, 5.65rem);
+  font-weight: 650;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.manifesto-section__word {
+  display: inline-block;
+  white-space: nowrap;
+  color: rgb(10 10 12);
+}
+

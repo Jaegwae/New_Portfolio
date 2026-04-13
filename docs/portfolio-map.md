@@ -3,7 +3,11 @@
 ## Purpose
 This file defines the role of each portfolio section so the site stays focused and coherent.
 
-## Main page families
+## Page families
+
+Note:
+- `Home` is the current live route in this repo
+- `Work`, `Project detail / case study`, and `About` remain useful content/IA targets even though they are not implemented as live app routes right now
 
 ### Home
 Purpose:

@@ -21,6 +21,496 @@ Concise history of meaningful portfolio changes.
 
 ## Entries
 
+### [2026-04-13] Detailed AI-readable comments expanded across source files
+- Type:
+  performance cleanup
+- Page:
+  repo-wide
+- Section:
+  source/style code comments
+- Summary:
+  Expanded the AI-readable commenting pass by adding more detailed inline context around meaningful runtime, component, helper, content, and style logic boundaries so future AI edits can understand responsibilities and safe edit zones more quickly.
+- Files changed:
+  - `src/app/*.tsx`
+  - `src/app/styles/*.css`
+  - `src/components/*.tsx`
+  - `src/content/*.ts`
+  - `src/lib/*.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only adds comments
+- Mobile impact:
+  unchanged; this pass only adds comments
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  comments are now much denser, so future refactors need to keep them in sync with the code
+
+### [2026-04-13] Active docs aligned with the current codebase
+- Type:
+  performance cleanup
+- Page:
+  repo-wide
+- Section:
+  active docs / runbooks
+- Summary:
+  Cleaned up the active docs so they describe the current local codebase more accurately, including the current live route scope, the `src/app/styles/` split, and the structured about-sheet content source. Historical worklog entries were left intact as records.
+- Files changed:
+  - `README.md`
+  - `docs/file-map.md`
+  - `docs/architecture.md`
+  - `docs/portfolio-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only edits docs
+- Mobile impact:
+  unchanged; this pass only edits docs
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  future refactors still need to keep the active docs in sync so they do not drift again
+
+### [2026-04-13] AI-readable ownership comments added across the main codebase
+- Type:
+  performance cleanup
+- Page:
+  repo-wide
+- Section:
+  source/style documentation comments
+- Summary:
+  Added concise AI-readable role/safe-edit comments across the main app, component, content, lib, and style files so future agent passes can navigate ownership and edit boundaries faster without changing runtime behavior.
+- Files changed:
+  - `src/app/layout.tsx`
+  - `src/app/page.tsx`
+  - `src/app/globals.css`
+  - `src/app/styles/*.css`
+  - `src/components/*.tsx`
+  - `src/content/*.ts`
+  - `src/lib/*.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged; this pass only adds documentation comments
+- Mobile impact:
+  unchanged; this pass only adds documentation comments
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  these comments now need to stay in sync with future ownership changes
+
+### [2026-04-13] Fluid scene hook slimmed further and annotated for agent readability
+- Type:
+  performance cleanup
+- Page:
+  home / fluid background runtime
+- Section:
+  hero fluid scene orchestration
+- Summary:
+  Continued the local-only cleanup lane by moving more simulation/state work out of `use-hero-fluid-background-scene.ts` into pure helpers, adding direct tests around those new helper paths, and inserting concise AI-readable comments in the touched runtime modules for faster future agent navigation.
+- Files changed:
+  - `src/lib/hero-fluid-background-runtime.ts`
+  - `src/lib/use-hero-fluid-background-scene.ts`
+  - `src/lib/use-prefers-reduced-motion.ts`
+  - `tests/unit/hero-fluid-background-scene-helpers.test.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only rearranges helper logic and comments around the existing fluid runtime
+- Mobile impact:
+  unchanged; no layout or content changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  the fluid scene hook is slimmer, but it still remains one of the larger runtime files and could be split further if the visual system changes again
+
+### [2026-04-13] Manifesto lock runtime state made more explicit
+- Type:
+  performance cleanup
+- Page:
+  home
+- Section:
+  manifesto lock runtime wiring
+- Summary:
+  Continued the local-only cleanup lane by making manifesto-lock eligibility/active state explicit inside the hero runtime and wiring the listener logic through that state while preserving the existing behavior under integration and e2e checks.
+- Files changed:
+  - `src/lib/hero-manifesto-lock.ts`
+  - `src/lib/use-hero-scene-runtime.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only clarifies manifesto-lock runtime state and listener wiring
+- Mobile impact:
+  unchanged; no layout or content changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  manifesto-lock is cleaner, but its global capture-listener approach is still more specialized than the rest of the codebase
+
+### [2026-04-13] Modal side effects extracted into dedicated hooks
+- Type:
+  performance cleanup
+- Page:
+  home / selected work modal
+- Section:
+  portfolio modal accessibility wiring
+- Summary:
+  Continued the local-only cleanup lane by moving the portfolio modal’s body-scroll lock, focus restoration, and focus-trap logic into dedicated hooks, while also cleaning up the shared reduced-motion hook shape and keeping modal behavior unchanged under tests.
+- Files changed:
+  - `src/components/portfolio-modal.tsx`
+  - `src/lib/use-body-scroll-lock.ts`
+  - `src/lib/use-focus-return.ts`
+  - `src/lib/use-focus-trap.ts`
+  - `src/lib/use-prefers-reduced-motion.ts`
+  - `tests/integration/portfolio-section.test.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only cleaned up shared reduced-motion hook structure
+- Mobile impact:
+  unchanged; no layout or content changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  manifesto lock still uses always-mounted global capture listeners, which is the next suspicious area to tighten if refactoring continues
+
+### [2026-04-10] Hero runtime split into navigation and scroll-sync hooks
+- Type:
+  performance cleanup
+- Page:
+  home
+- Section:
+  hero runtime orchestration
+- Summary:
+  Continued the local-only refactor lane by splitting the hero scene runtime into dedicated navigation and scroll-sync hooks so the top-level runtime hook now mainly composes smaller orchestration pieces.
+- Files changed:
+  - `src/lib/use-hero-scene-runtime.ts`
+  - `src/lib/use-hero-scene-navigation.ts`
+  - `src/lib/use-hero-scene-scroll-sync.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only reorganizes the hero runtime internals
+- Mobile impact:
+  unchanged; no layout or content changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  the hero runtime is cleaner, but the new navigation and scroll-sync hooks still rely primarily on integration coverage rather than dedicated hook-level tests
+
+### [2026-04-10] Hero motion and manifesto helpers gained direct unit coverage
+- Type:
+  performance cleanup
+- Page:
+  home / hero motion helpers
+- Section:
+  manifesto lock / hero scene motion
+- Summary:
+  Continued the local-only hardening lane by exposing more testable helper logic from the hero motion and manifesto-lock modules, then added direct unit tests so those thresholds and decisions are no longer protected only by integration behavior.
+- Files changed:
+  - `src/lib/hero-manifesto-lock.ts`
+  - `src/lib/hero-scene-motion.ts`
+  - `tests/unit/hero-manifesto-lock.test.ts`
+  - `tests/unit/hero-scene-motion.test.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only extracted and verified helper logic behind the existing motion system
+- Mobile impact:
+  unchanged; no layout or content changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  the motion system now has stronger helper coverage, but `HeroFluidBackground` still lacks a dedicated component-level wiring test
+
+### [2026-04-10] Fluid runtime helpers extracted and unit-tested
+- Type:
+  performance cleanup
+- Page:
+  home / fluid background runtime
+- Section:
+  hero fluid helper logic
+- Summary:
+  Continued the local-only hardening lane by extracting testable pure helpers from the fluid background runtime and adding direct unit coverage for responsive field dimensions, encoded texture output, and pointer influence behavior.
+- Files changed:
+  - `src/lib/hero-fluid-background-runtime.ts`
+  - `src/lib/use-hero-fluid-background-scene.ts`
+  - `tests/unit/hero-fluid-background-runtime.test.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only extracts and verifies pure helper logic behind the fluid runtime
+- Mobile impact:
+  unchanged; no layout or copy changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  the fluid runtime now has direct pure-helper coverage, but it still lacks a dedicated component-level test around WebGL scene wiring
+
+### [2026-04-10] Hero runtime regression coverage strengthened
+- Type:
+  performance cleanup
+- Page:
+  home
+- Section:
+  hero integration tests
+- Summary:
+  Strengthened the local regression lock around the extracted hero runtime by adding explicit coverage for section activation state and reduced-motion manifesto behavior, then reran the full local validation suite.
+- Files changed:
+  - `tests/integration/hero-scene.test.tsx`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only strengthens automated verification for reduced-motion handling
+- Mobile impact:
+  unchanged; no layout or content changes were made
+- Tests / checks:
+  `npm test`
+  `npm run test:e2e`
+  `npm run lint`
+  `npm run typecheck`
+  `npm run build`
+- Remaining concerns:
+  the hero runtime is now better protected, but the extracted fluid background runtime still has limited direct automated coverage
+
+### [2026-04-10] Hero scene orchestration moved into a runtime hook
+- Type:
+  performance cleanup
+- Page:
+  home
+- Section:
+  hero orchestration
+- Summary:
+  Continued the local-only refactor lane by moving the remaining hero-scene orchestration into `use-hero-scene-runtime.ts`, extracting the shared synced state/ref pattern into `use-synced-state-ref.ts`, and keeping `hero-scene.tsx` focused on composition and render output.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `src/lib/use-hero-scene-runtime.ts`
+  - `src/lib/use-synced-state-ref.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only moved orchestration logic into a shared local hook
+- Mobile impact:
+  unchanged; no layout or content changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  the extracted hero runtime is cleaner, but future work may still want extra integration coverage around the manifesto lock / section-snap behavior
+
+### [2026-04-10] Fluid runtime and global stylesheet split into smaller local files
+- Type:
+  performance cleanup
+- Page:
+  home / shared styling
+- Section:
+  hero fluid background / global styles / e2e helpers
+- Summary:
+  Continued the local-only refactor lane by extracting the hero fluid background runtime into dedicated local modules, turning `src/app/globals.css` into an import entrypoint for smaller partial styles, and removing the fixed Playwright smoke-test waits in favor of lighter readiness checks.
+- Files changed:
+  - `src/components/hero-fluid-background.tsx`
+  - `src/lib/hero-fluid-background-runtime.ts`
+  - `src/lib/use-hero-fluid-background-scene.ts`
+  - `src/app/globals.css`
+  - `src/app/styles/base.css`
+  - `src/app/styles/hero.css`
+  - `src/app/styles/manifesto.css`
+  - `src/app/styles/about-sheet.css`
+  - `src/app/styles/portfolio.css`
+  - `src/app/styles/motion.css`
+  - `src/app/styles/responsive.css`
+  - `src/app/styles/reduced-motion.css`
+  - `tests/e2e/helpers.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; the runtime/style split preserves the centralized reduced-motion policy from the previous pass
+- Mobile impact:
+  unchanged in user-visible behavior; responsive rules were moved, not redesigned
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  `hero-scene.tsx` still owns meaningful orchestration logic and is the next likely refactor target if the local cleanup continues
+
+### [2026-04-10] Reduced-motion policy centralized into a shared hook
+- Type:
+  performance cleanup
+- Page:
+  home / shared motion infrastructure
+- Section:
+  reduced-motion behavior
+- Summary:
+  Added a shared `usePrefersReducedMotion()` hook and rewired the hero scene, fluid background, smooth-scroll provider, and GSAP reveal helper to consume it so reduced-motion detection now lives in one local place instead of being duplicated across multiple modules.
+- Files changed:
+  - `src/lib/use-prefers-reduced-motion.ts`
+  - `src/components/hero-scene.tsx`
+  - `src/components/hero-fluid-background.tsx`
+  - `src/components/smooth-scroll-provider.tsx`
+  - `src/lib/gsap-reveal.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass centralizes the preference signal rather than changing the motion design
+- Mobile impact:
+  unchanged; no layout or content changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  `hero-fluid-background.tsx` still has a large WebGL runtime effect and may be the next cleanup target if deeper refactoring is desired
+
+### [2026-04-10] Hero scene split into local modules
+- Type:
+  performance cleanup
+- Page:
+  home
+- Section:
+  hero orchestration / local motion helpers
+- Summary:
+  Kept the refactor local-only and split the live hero into smaller modules by extracting the fixed section navigation, hero profile rendering, manifesto-lock helpers, and scene-motion helpers out of `hero-scene.tsx`, while keeping the existing home and portfolio behavior unchanged.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `src/components/hero-section-nav.tsx`
+  - `src/components/hero-profile.tsx`
+  - `src/lib/hero-manifesto-lock.ts`
+  - `src/lib/hero-scene-motion.ts`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/file-map.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; this pass only moved logic into smaller local modules
+- Mobile impact:
+  unchanged in user-visible behavior; no layout or copy changes were made
+- Tests / checks:
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  `hero-scene.tsx` still owns a meaningful amount of orchestration logic and would benefit from a future reduced-motion/shared-hook pass
+
+### [2026-04-10] Home route dead-path cleanup and content split
+- Type:
+  performance cleanup
+- Page:
+  home
+- Section:
+  hero / about sheet / portfolio support code
+- Summary:
+  Removed dead live-route code for the non-rendered `about` and `wave-field` surfaces, moved static hero profile items into `src/content/hero-profile.ts`, converted the about title to structured `titleLines` content, and aligned the related tests/docs with the current live structure.
+- Files changed:
+  - `src/components/hero-scene.tsx`
+  - `src/components/about-sheet.tsx`
+  - `src/content/about-sheet.ts`
+  - `src/content/hero-profile.ts`
+  - `src/app/globals.css`
+  - `tests/integration/about-sheet.test.tsx`
+  - `tests/integration/hero-scene.test.tsx`
+  - `tests/integration/portfolio-section.test.tsx`
+  - `docs/file-map.md`
+  - `.codex/spec.md`
+  - `.codex/plans.md`
+  - `.codex/next.md`
+  - `docs/worklog.md`
+- Reduced motion impact:
+  unchanged in user-visible behavior; the pass only removed dead selectors and non-rendered state paths
+- Mobile impact:
+  unchanged in user-visible behavior; mobile styles were only trimmed where they targeted removed dead code
+- Tests / checks:
+  `npm ci`
+  `npm run lint`
+  `npm test`
+  `npm run typecheck`
+  `npm run build`
+  `npm run test:e2e`
+- Remaining concerns:
+  `hero-scene.tsx` still needs a deeper structural split in a future pass
+
 ### [2026-04-09] Home profile age updated to 만 26세
 - Type:
   home identity refinement

@@ -1,0 +1,59 @@
+/* AI_NOTE:
+   Scope: reduced-motion overrides.
+   Keep this aligned with usePrefersReducedMotion-driven runtime behavior.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-typed-line__word {
+    min-width: 0;
+  }
+
+  .hero-copy,
+  .hero-fluid-background__fallback,
+  .hero-fluid-background__canvas,
+  .hero-fluid-background__veil,
+  .hero-scroll,
+  .about-sheet,
+  .about-sheet__paragraph,
+  .portfolio-filter,
+  .portfolio-card__button,
+  .portfolio-modal-card {
+    transition: none;
+  }
+
+  .about-sheet__title,
+  .about-sheet__body,
+  .about-sheet__paragraph,
+  .portfolio-section__title {
+    opacity: 1;
+    transform: none;
+  }
+
+  .portfolio-section {
+    transform: none;
+    filter: none;
+  }
+
+  .portfolio-marquee__track {
+    animation: none;
+  }
+
+  .portfolio-modal-marquee__track {
+    animation: none;
+  }
+
+  .portfolio-modal-card {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+}

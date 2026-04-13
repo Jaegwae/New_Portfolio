@@ -6,19 +6,17 @@ This document defines the high-level page architecture for a personal portfolio 
 ## Route model
 - `/`
   - home identity, selected work, credibility/worked-with, short personal statement, contact CTA
-- `/work`
-  - project listing page with consistent card or row structure
-- `/work/[slug]`
-  - project detail or case-study page
-- `/about`
-  - personal narrative, experience, philosophy, and trust-building content
+
+## Current implementation note
+- the current codebase only implements the home route in `src/app/`
+- `/work`, `/work/[slug]`, and `/about` remain architectural targets rather than live app routes in this repo state
 
 ## Composition rules
 - route files own page composition, not dense content storage
 - in the current repo, `src/components/` owns the section markup and section behavior
 - content should live in `src/content/` when it needs to be reused or audited
 - shared UI should live in `src/components/`
-- reusable motion logic currently lives in `src/components/hero-scene.tsx`, `src/lib/gsap-reveal.ts`, and `src/components/smooth-scroll-provider.tsx`
+- reusable motion logic currently lives mostly in `src/lib/` (`gsap-reveal`, hero runtime helpers, fluid runtime helpers) plus `src/components/smooth-scroll-provider.tsx`
 - `src/animations/` remains available for future extracted motion modules if the site grows beyond the current home-route setup
 
 ## Architectural priorities

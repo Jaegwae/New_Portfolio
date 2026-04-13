@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * AI_NOTE:
+ * Role: selected-work section with filters, card grid, and modal launcher state.
+ * Keep project data in src/content/portfolio-projects.ts and keep modal wiring local to this section.
+ */
+
 import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -12,6 +18,8 @@ import {
 } from "@/content/portfolio-projects";
 import { useGsapScrollReveal } from "@/lib/gsap-reveal";
 
+// AI_CONTEXT:
+// Decorative marquee rows are intentionally duplicated to create a seamless looping track.
 function MarqueeRow({
   direction,
   offset,
@@ -31,6 +39,8 @@ function MarqueeRow({
   );
 }
 
+// AI_CONTEXT:
+// Cards use buttons because they open a modal rather than navigating away.
 function PortfolioCard({
   project,
   onOpen,
@@ -79,6 +89,9 @@ function PortfolioCard({
 }
 
 export function PortfolioSection() {
+  // AI_CONTEXT:
+  // This section owns only filter state and currently-open modal project state.
+  // Keep project data itself in the content layer.
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [selectedFilter, setSelectedFilter] = useState<(typeof PORTFOLIO_FILTERS)[number]>("All");
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
@@ -93,6 +106,8 @@ export function PortfolioSection() {
     },
   ]);
 
+  // AI_CONTEXT:
+  // Filtering stays data-driven; avoid hardcoded category branches in the render tree.
   const visibleProjects = useMemo(() => {
     if (selectedFilter === "All") {
       return PORTFOLIO_PROJECTS;

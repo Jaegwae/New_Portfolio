@@ -1,7 +1,7 @@
 # Plan
 
 ## Goal
-Deploy and commit the home profile age text update to `만 26세`.
+Add denser AI-readable comments across the current codebase.
 
 ## Current status
 - not started
@@ -13,39 +13,30 @@ Deploy and commit the home profile age text update to `만 26세`.
 Current: done
 
 ## Checklist
-- [x] update the hero profile age text
-- [x] rerun validation
-- [x] redeploy the site
-- [x] commit and push the change
+- [x] keep the existing regression coverage as the behavior lock
+- [x] add detailed AI-readable comments across meaningful source/style files
+- [x] keep behavior unchanged under tests
+- [x] keep behavior unchanged under tests
+- [x] rerun local validation
 - [x] update `next.md`
 - [x] append `worklog`
 
 ## Checkpoints
 
-### 1. Content fix
-- update only the displayed age value in the hero profile
-- keep the birth date string and layout unchanged
+### 1. Behavior lock
+- rely on the current validation suite before the docs cleanup pass
 
 Done when:
-- the home profile reads `2000.03.30 (만 26세)`
+- the current home/portfolio behavior is already covered before the docs edits
 
-### 2. App safety
-- avoid unrelated UI or motion edits
-- ensure the app still validates after the text change
-
-Done when:
-- the age update integrates cleanly into the home route
-
-### 3. Release
-- redeploy the app so the age update is live
-- commit and push the age update and related records
+### 2. File split
+- annotate the meaningful source/style logic boundaries so future AI edits can navigate the code faster
 
 Done when:
-- the age update is live and synced to GitHub
+- future AI edits can rely on the source comments for role/boundary context without changing behavior
 
-### 4. Validation
-- verify deployment and post-push Git state
-- record the age update in repo docs
+### 3. Validation
+- rerun repo checks locally and record the local-only refactor pass in repo docs
 
 Done when:
-- the age update is validated and recorded
+- the refactor is validated and recorded

@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * AI_NOTE:
+ * Role: renders manifesto copy and visual word-reveal styling.
+ * Input wordProgress is controlled by the hero manifesto runtime, not locally derived here.
+ */
+
 import { useMemo } from "react";
 
 const MANIFESTO_LINES = [
@@ -13,6 +19,9 @@ type ManifestoSectionProps = {
 };
 
 export function ManifestoSection({ wordProgress }: ManifestoSectionProps) {
+  // AI_CONTEXT:
+  // One normalized progress number is mapped into per-word visual state.
+  // Timing decisions belong to the runtime; rendering decisions belong here.
   const wordStyles = useMemo(() => {
     const muted: [number, number, number] = [10, 10, 12];
     const bright: [number, number, number] = [245, 243, 237];
